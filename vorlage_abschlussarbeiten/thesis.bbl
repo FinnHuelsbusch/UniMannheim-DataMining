@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{euzenat07matcherbook}
+Jerome Euzenat and Pavel Shvaiko.
+\newblock {\em Ontology Matching}.
+\newblock Springer, 2007.
+
+\bibitem{giunchiglia2008semanticmatching}
+Fausto Giunchiglia, Mikalai Yatskevich, and Pavel Shvaiko.
+\newblock Semantic matching: Algorithms and implementation.
+\newblock {\em Journal on Data Semantics}, 2007.
+
+\bibitem{mochol08matcher}
+Malgorzata Mochol and Anja Jentzsch.
+\newblock Towards a rule-based matcher selection.
+\newblock In {\em Proceedings of the 16th international conference on Knowledge
+  Engineering: Practice and Patterns}, Acitrezza, Italy, 2008.
+
+\end{thebibliography}
