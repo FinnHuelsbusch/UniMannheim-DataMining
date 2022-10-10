@@ -4,13 +4,15 @@
 \documentclass[11pt,titlepage,oneside,openany]{book}
 \usepackage{times}
 
+\usepackage[round]{natbib}   % omit 'round' option if you prefer square brackets
+\bibliographystyle{plainnat}
 
 \usepackage{graphicx}
 \usepackage{latexsym}
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-\usepackage{ntheorem}
+%\usepackage{ntheorem}
 
 % \usepackage{paralist}
 \usepackage{tabularx}
@@ -22,6 +24,8 @@
 % CUSTOM PACKAGES
 % this package will help with German ä ü ö etc.
 \usepackage[utf8]{inputenc}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
 
 % well, when your work is concerned with definitions, proposition and so on, we suggest this
 % feel free to add Corrolary, Theorem or whatever you need
@@ -78,6 +82,7 @@
    {Proposal\\}
    \vspace{2cm}
    {presented by\\
+   	Club der toten Dichten (Team 12)\\
     Marie-Christin Häge, 1913888 \\
     Finn Hülsbuch, 1913864 \\
     Thilo Dieing, 1692328 \\
@@ -87,7 +92,7 @@
    \vspace{1cm} 
    {submitted to the\\
     Data and Web Science Group\\
-    Prof.\ Dr.\ Right Name Here\\
+    Prof.\ Dr.\ Heiko Paulheim\\
     University of Mannheim\\} \vspace{2cm}
    {October 2022}
   \end{center}
@@ -117,7 +122,7 @@
 \section{What is the problem you are solving?}
 \label{sec:problem}
 
-Diseases of the circulatory system are the most common cause of death in Germany \cite{statistischesbundesamt2022}. 
+Diseases of the circulatory system are the most common cause of death in Germany \citep{statistischesbundesamt2022}. 
 Most of these are heart diseases. A faster and more accurate identification of these will result in immediate and more precise treatment, and could thereby save many lives.
 
 Our goal is to develop an algorithm that will support medical staff in making more data-based decisions related to heart diseases. This will be achieved by identifying the key factors playing a role in determining whether a patient has a heart disease. 
@@ -130,7 +135,7 @@ Consequently, through the gained insights the quality and accuracy of choosing t
 
 We will use the Heart Disease Data Set. The dataset was created in 1988 by combining datasets collected in Budapest, Zurich, Basel and Cleveland. The dataset consists of 75 attributes and has 899 instances. The condition of the patient is labeled as either 0 (no heart disease) or 1 (heart disease).
 
-The dataset is publicly available in the UCI Machine Learning Repository \cite{janosi1988} divided by the origin of the data. We will obtain the data by downloading the dataset and combining the different files of the folder.
+The dataset is publicly available in the UCI Machine Learning Repository \citep{janosi1988} divided by the origin of the data. We will obtain the data by downloading the dataset and combining the different files of the folder.
 
 \section{How will you solve the problem?}
 \label{cha:solve}
