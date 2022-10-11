@@ -1,0 +1,34 @@
+% Current file is content/00_LaTeX/sourceCodeStyle/languages/C&C++.tex
+
+% -- Eigene Farben für den Style
+\definecolor{C++Lila}{HTML}{A640FF}
+\definecolor{C++Orange}{HTML}{D69D85}
+\definecolor{C++Blau}{HTML}{569CD6}
+\definecolor{C++DunkelBlau}{HTML}{0E4583}
+\definecolor{C++Mint}{HTML}{B8D7A3}
+\definecolor{C++Creme}{HTML}{DCDCAA}
+\definecolor{C++Gruen}{HTML}{57A64A}
+\definecolor{C++Tuerkis}{HTML}{4EC9B0}
+
+% -- Eigener C/++-Style für den Quellcode
+\renewcommand{\ttdefault}{pcr}               % Schriftart, welche auch fett beinhaltet
+\lstdefinestyle{EigenerC++Style}{
+	language=C++,			% Standardsprache des Quellcodes
+    columns=flexible,
+	morekeywords={nullptr},
+	% Enumerators (Mint)
+	morekeywords=[2]{},
+    % Methoden (Cremefarben)
+	morekeywords=[3]{},
+	% Extra Keywords (Lila)
+	morekeywords=[4]{},
+	% Noch mehr Keywords (Gruen)
+	morekeywords=[5]{},
+    keywordstyle=\bfseries\color{C++DunkelBlau},
+    keywordstyle=[2]\color{C++Mint},
+    keywordstyle=[3]\color{C++Creme},
+    keywordstyle=[4]\color{C++Lila},
+    keywordstyle=[5]\color{C++Tuerkis},
+	commentstyle=\itshape\color{C++Gruen},
+	stringstyle=\color{C++Orange}
+}

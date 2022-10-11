@@ -1,0 +1,54 @@
+\NewAcroTemplate[list]{standard}{%
+\acronymsmapT{%
+  \AcroAddRow{%
+	\acrowrite{short}%
+	&
+	\acrowrite{list}%
+	\tabularnewline
+  }%
+}%
+\acroheading
+\acropreamble
+\par\noindent
+\setlength\LTleft{0pt}%
+\setlength\LTright{0pt}%
+\begin{longtable}{@{}lll@{\extracolsep{\fill}}l@{}}
+  \AcronymTable
+\end{longtable}
+}
+
+
+	
+	\DeclareAcronym{AJAX}{
+  		short = AJAX,
+  		long  = Asynchronous Javascript and XML
+	}
+
+	\DeclareAcronym{API}{
+		short = API,
+		long  = Application Programming Interface
+	}
+
+	\DeclareAcronym{HTTPS}{
+		short = HTTPS,
+		long  = Hypertext Transfer Protocol Secure
+	}
+
+	\DeclareAcronym{ISBN}{
+		short = ISBN,
+		long  = Internationale Standardbuchnummer
+	}
+
+	\DeclareAcronym{AIR}{
+  		short = AIR,
+  		long  = Adobe Integrated Runtime
+	}
+
+	\DeclareAcronym{ufo}{
+		short = UFO ,
+		long = unidentified flying object ,
+		foreign = unbekanntes Flugobjekt ,
+		foreign-plural-form = unbekannte Flugobjekte ,
+		foreign-babel = ngerman ,
+		long-indefinite = an
+	}
