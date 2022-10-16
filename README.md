@@ -20,7 +20,7 @@ Feature die entfernt werden:
 | dig      | Die Art der Datenerhebung ist für uns irrelevant             | Ob beim EKG ein Herzglykoside verwendet wurden https://de.wikipedia.org/wiki/Herzglykoside |
 | prop     | s.o.                                                         | Ob der Proband während des EKGs Betablocker genommen hat     |
 | nitr     | s.o.                                                         | Ob der Proband während des EKGs Nitrate genommen hat         |
-| pro      | s.o.                                                         | Ob der Proband während des EKGs Diuretikum genommen hat      |
+| diuretic | s.o.                                                         | Ob der Proband während des EKGs Diuretikum genommen hat      |
 | proto    | s.o.                                                         | Welche Art von Belastungstest während der Erhebung verwendet wurde |
 | thaldur  | s.o                                                          | Dauer der Belastungsmessung in minuten                       |
 | thaltime | s.o.                                                         | Wann die Messung gestartet wurde                             |
@@ -29,9 +29,10 @@ Feature die entfernt werden:
 | rldv5    | 47 % fehlen                                                  | höhe der Ausschläge des EKGs bei ruhe                        |
 | ca       | 67 % fehlen                                                  | Anzahl der hauptvenen                                        |
 | restckm  | irrelevant laut uci                                          |                                                              |
-| exerckm  | s.o.                                                         |                                                              |
+| exerckm  | Konstante                                                    |                                                              |
 | restef   | 97 % fehlen                                                  | Ich  studiere nicht Medizin kein plan                        |
 | restwm   | s.o.                                                         | s.o.                                                         |
+| exeref   | 99% Missing                                                  |                                                              |
 | exerwm   | s.o.                                                         | s.o.                                                         |
 | thal     | 53 %                                                         | s.o.                                                         |
 | thalsev  | 85 %                                                         |                                                              |
