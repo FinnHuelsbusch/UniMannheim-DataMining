@@ -10,6 +10,8 @@ Feature die entfernt werden:
 | relrest  | Scheint relevant zu sein                                     | Viele Werte fehlen 31,5 % (cleveland)                        |
 | ccf      | Konstant nur 0                                               | social security number                                       |
 | pncaden  | Ist in den anderen Featuren bereits enthalten. (annahme: doppelt ist nicht besser, die Modelle können das selber) | (sum of painloc, painexer, relrest)                          |
+| chol     | 20% Der werte enthalten 0 als Wert -> ungesund               | Cholesterinwert                                              |
+| smoke    | Normal fehlen 74 % nach Kombination mit years sind es nur noch 43% nach der Kombination mit years und cigs sind es 42% | Raucher oder nicht raucher                                   |
 | years    | Kombiniert mit smoke                                         | Jahre als raucher                                            |
 | cigs     | Kombiniert mit smoke                                         | Anzahl an Zigaretten                                         |
 | dm       | Zu viele fehlen 90%                                          |                                                              |
@@ -25,6 +27,7 @@ Feature die entfernt werden:
 | thaldur  | s.o                                                          | Dauer der Belastungsmessung in minuten                       |
 | thaltime | s.o.                                                         | Wann die Messung gestartet wurde                             |
 | dummy    | Keine Erklärung der Bedeutung                                |                                                              |
+| xhypo    | Unbekannte Bedeutung                                         | Unbekannte Bedeutung                                         |
 | slope    | 30% fehlen                                                   | Art der ST Strecke unter maximaler belastung                 |
 | rldv5    | 47 % fehlen                                                  | höhe der Ausschläge des EKGs bei ruhe                        |
 | ca       | 67 % fehlen                                                  | Anzahl der hauptvenen                                        |
@@ -62,23 +65,24 @@ Feature die entfernt werden:
 
 Featrue die zur Diskussion stehen 
 
-| Feature  | Pro                                                          | Kontra                                                       | Aussage des Features                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| trestbps | Scheint relevant zu sein                                     | Werte Fehlen 6,8% (long-beach-va)   Unschlüssige Werte: 0    | Blutdruck                                                    |
-| htn      |                                                              | Wert ist nicht erklärbar/ Bedeutung unbekannt  4% fehlen vor allem in switzerland |                                                              |
-| chol     | Scheint relevant zu sein   Ist in den 14 normalen Daten enthalten | 3.6 % fehlen vor allem in Ungarn   50 sind null in long beach   123 switzerland |                                                              |
-| smoke    | Wir sind daran interessiert                                  | Normal fehlen 74 % nach Kombination mit years sind es nur noch 43% nach der Kombination mit years und cigs sind es 42% |                                                              |
-| fbs      | Scheint relevant zu sein                                     | 10% fehlen vorallem in der Schweiz                           | Erhöhter Blutzucker  1 = ja 0 = nein                         |
-| met      | eigentlich ein netter wert um die Belastbarkeit zu messen.   | Die Werte stimmen nicht mit realistischen Werten überein.    | Metabolisches Äquivalent gibt an wie gut der Körper mit Belastungen umgehen kann |
-| thalach  | Scheint sehr relevant zu sein                                | 57 fehlen in long beach                                      | maximum heart rate achieved                                  |
-| thalrest | s.o                                                          | s.o                                                          | resting heart rate                                           |
-| tpeakbps | s.o                                                          | s.o                                                          | peak exercise blood pressure (first of 2 parts)              |
-| tpeakbpd | s.o                                                          | s.o                                                          | peak exercise blood pressure (second of 2 parts)             |
-| trestbpd | s.o                                                          | s.o                                                          | resting blood pressure                                       |
-| exang    | s.o                                                          | s.o                                                          | Übungen lösen Angina aus (Engegefühl in der Brust)           |
-| xhypo    | s.o                                                          | s.o + Unbekannte Bedeutung                                   |                                                              |
-| oldpeak  | s.o                                                          | 57 fehlen in long beach                                      | Eine durch Belastung herbeigeführte ST-Senkung               |
-| rldv5e   |                                                              | 144 fehlen                                                   | höhe des höchsten ausschlags des Belastungs ekgs             |
+| Feature  | Pro                                                        | Kontra                                                       | Aussage des Features                                         |
+| -------- | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| trestbps | Scheint relevant zu sein                                   | Werte Fehlen 6,8% (long-beach-va)   Unschlüssige Werte: 0    | Blutdruck                                                    |
+| htn      |                                                            | Wert ist nicht erklärbar/ Bedeutung unbekannt  4% fehlen vor allem in switzerland |                                                              |
+| fbs      | Scheint relevant zu sein                                   | 10% fehlen vorallem in der Schweiz                           | Erhöhter Blutzucker  1 = ja 0 = nein                         |
+| met      | eigentlich ein netter wert um die Belastbarkeit zu messen. | Die Werte stimmen nicht mit realistischen Werten überein.    | Metabolisches Äquivalent gibt an wie gut der Körper mit Belastungen umgehen kann |
+| thalach  | Scheint sehr relevant zu sein                              | 57 fehlen in long beach                                      | maximum heart rate achieved                                  |
+| thalrest | s.o                                                        | s.o                                                          | resting heart rate                                           |
+| tpeakbps | s.o                                                        | s.o                                                          | peak exercise blood pressure (first of 2 parts)              |
+| tpeakbpd | s.o                                                        | s.o                                                          | peak exercise blood pressure (second of 2 parts)             |
+| trestbpd | s.o                                                        | s.o                                                          | resting blood pressure                                       |
+| exang    | s.o                                                        | s.o                                                          | Übungen lösen Angina aus (Engegefühl in der Brust)           |
+| oldpeak  | s.o                                                        | 57 fehlen in long beach                                      | Eine durch Belastung herbeigeführte ST-Senkung               |
+| rldv5e   |                                                            | Nötige bearbeitung                                           | höhe des höchsten ausschlags des Belastungs ekgs             |
+
+Feature die behalten werden, wenn NaN durch die Algorithmen gehandelt wer
+
+
 
 Feature die behalten werden: 
 
