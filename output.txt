@@ -1,0 +1,3 @@
+{'classification__n_neighbors': 8,
+ 'normalisation__with_mean': True,
+ 'normalisation__with_std': True}
