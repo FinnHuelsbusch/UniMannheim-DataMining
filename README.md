@@ -1,3 +1,18 @@
+# Fragen 
+
+https://docs.google.com/document/d/1nnNm9n9pRanFkuAihuQkQ0RCXnOCD7m-5cRJleOB-6U/edit#
+
+# Todo
+
+- OneHotEncoden 
+- EarlyStopping 
+- Shap vernünftig implementieren 
+- Auswertung basierend auf den Datensätzten 
+- Etwas kommentieren kann nicht schaden 
+- Metrik entscheiden. 
+- research 
+- excel export 
+
 # Feature Selection
 
 Feature die entfernt werden: 
