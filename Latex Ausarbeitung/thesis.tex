@@ -16,6 +16,7 @@
 ]{biblatex}
 \addbibresource{thesis-ref.bib}	
 
+
 \usepackage[textsize=tiny]{todonotes}
 \usepackage{graphicx}
 \usepackage{latexsym}
@@ -125,7 +126,7 @@
 \end{titlepage} 
 
 % no lets make some add some table of contents
-%\tableofcontents
+\tableofcontents
 %\newpage
 
 %\listofalgorithms
@@ -158,10 +159,15 @@
 % 			END OF CONTENT!
 % =============================================
 
-\vspace{2cm}
-\begin{small}
-  \printbibliography
-\end{small}
+
+%\chapter{Bibliography}
+\printbibliography
+
+%\vspace{2cm}
+%\begin{small}
+  %\printbibliography
+  % \printbibliography[title = {Quellenverzeichnis}] To use a different name
+%\end{small}
 
 \pagestyle{plain}
 
