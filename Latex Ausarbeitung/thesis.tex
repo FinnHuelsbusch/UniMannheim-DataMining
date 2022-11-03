@@ -1,0 +1,226 @@
+\documentclass[11pt,titlepage,oneside,openany]{book}
+\usepackage{times}
+
+\usepackage[
+	backend = biber,                		% Verweis auf biber
+	language = auto,						% Sprache wird automatisch festgelegt
+	style = authoryear,                	% Nummerierung der Quellen mit Zahlen
+	bibencoding = utf8,						% UTF8 wird in biblatex aktiviert
+	sorting = none,                 		% none = Sortierung nach der Erscheinung im Dokument
+	sortcites = true,               		% Sortiert die Quellen innerhalb eines cite-Befehls
+	block = space,                  		% Extra Leerzeichen zwischen Blocks
+	hyperref = true,                		% Links sind klickbar auch in der Quelle
+	doi=true,                      			% DOI anzeigen
+	isbn=true,                     			% ISBN anzeigen
+	alldates=short                  		% Datum immer als DD.MM.YYYY anzeigen
+]{biblatex}
+\addbibresource{thesis-ref.bib}	
+
+\usepackage[textsize=tiny]{todonotes}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%\usepackage{ntheorem}
+
+% \usepackage{paralist}
+\usepackage{tabularx}
+
+% this packaes are useful for nice algorithms
+%\usepackage{algorithms}
+\usepackage{algorithmicx}
+
+% CUSTOM PACKAGES
+% this package will help with German ä ü ö etc.
+\usepackage[utf8]{inputenc}
+
+
+% -- Varioref
+\usepackage{varioref}
+
+
+% -- Hyperref
+\usepackage{hyperref}
+\hypersetup{%
+	linktocpage=true, 				% Nicht der Text sondern die Seitenzahlen in Verzeichnissen klickbar
+	bookmarksnumbered=true 			% Überschriftsnummerierung im PDF Inhalt anzeigen.
+}
+
+
+% -- Cleverev
+\usepackage[noabbrev]{cleveref}   	% Kein Erkennen von Abkürzungen 
+
+
+% well, when your work is concerned with definitions, proposition and so on, we suggest this
+% feel free to add Corrolary, Theorem or whatever you need
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+
+% its always useful to have some shortcuts (some are specific for algorithms
+% if you do not like your formating you can change it here (instead of scanning through the whole text)
+\renewcommand{\algorithmiccomment}[1]{\ensuremath{\rhd} \textit{#1}}
+\def\MYCALL#1#2{{\small\textsc{#1}}(\textup{#2})}
+\def\MYSET#1{\scshape{#1}}
+\def\MYAND{\textbf{ and }}
+\def\MYOR{\textbf{ or }}
+\def\MYNOT{\textbf{ not }}
+\def\MYTHROW{\textbf{ throw }}
+\def\MYBREAK{\textbf{break }}
+\def\MYEXCEPT#1{\scshape{#1}}
+\def\MYTO{\textbf{ to }}
+\def\MYNIL{\textsc{Nil}}
+\def\MYUNKNOWN{ unknown }
+% simple stuff (not all of this is used in this examples thesis
+\def\INT{{\mathcal I}} % interpretation
+\def\ONT{{\mathcal O}} % ontology
+\def\SEM{{\mathcal S}} % alignment semantic
+\def\ALI{{\mathcal A}} % alignment
+\def\USE{{\mathcal U}} % set of unsatisfiable entities
+\def\CON{{\mathcal C}} % conflict set
+\def\DIA{\Delta} % diagnosis
+% mups and mips
+\def\MUP{{\mathcal M}} % ontology
+\def\MIP{{\mathcal M}} % ontology
+% distributed and local entities
+\newcommand{\cc}[2]{\mathit{#1}\hspace{-1pt} \# \hspace{-1pt} \mathit{#2}}
+\newcommand{\cx}[1]{\mathit{#1}}
+% complex stuff
+\def\MER#1#2#3#4{#1 \cup_{#3}^{#2} #4} % merged ontology
+\def\MUPALL#1#2#3#4#5{\textit{MUPS}_{#1}\left(#2, #3, #4, #5\right)} % the set of all mups for some concept
+\def\MIPALL#1#2{\textit{MIPS}_{#1}\left(#2\right)} % the set of all mips
+
+
+
+
+
+\begin{document}
+
+\pagenumbering{roman}
+% lets go for the title page, something like this should be okay
+\begin{titlepage}
+	\vspace*{2cm}
+  \begin{center}
+   {\Large Analysis of Heart Disease Data\\}
+   \vspace{2cm} 
+   {Project Report\\}
+   \vspace{2cm}
+   {presented by\\
+   	Club der toten Dichten (Team 12)\\
+    Marie-Christin Häge, 1913888 \\
+    Finn Hülsbuch, 1913864 \\
+    Thilo Dieing, 1692328 \\
+    Lasse Lemke, 1914420 \\
+    Eric Jacquomé, 1903834 \\
+    Timotheus Gumpp, 1913876 \\
+   }
+   \vspace{1cm} 
+   {submitted to the\\
+    Data and Web Science Group\\
+    Prof.\ Dr.\ Heiko Paulheim\\
+    University of Mannheim\\} \vspace{2cm}
+   {October 2022}
+  \end{center}
+\end{titlepage} 
+
+% no lets make some add some table of contents
+%\tableofcontents
+%\newpage
+
+%\listofalgorithms
+
+%\listoffigures
+
+%\listoftables
+
+% evntuelly you might add something like this
+% \listtheorems{definition}
+% \listtheorems{proposition}
+
+\newpage
+
+
+% okay, start new numbering ... here is where it really starts
+\pagenumbering{arabic}
+
+
+
+\section{What is the problem you are solving?}
+\label{sec:problem}
+
+Diseases of the circulatory system are the most common cause of death in Germany (\cite{statistischesbundesamt2022}).
+Most of these are heart diseases. A faster and more accurate identification of these will result in immediate and more precise treatment, and could thereby save lives.
+
+Our goal is to develop a Machine Learning Model that will support medical staff in making more data-based decisions related to heart diseases. This will be achieved by identifying the key features playing a role in determining whether a patient has a heart disease or not. 
+
+Consequently, through the gained insights the quality and accuracy of choosing the correct treatment and deciding on the fitting measures will improve. Furthermore, analyzing the key factors individually can also lead to recommendations for the identification process of heart diseases. 
+
+
+\section{What data will you use?}
+\label{sec:data}
+
+We will use a Heart Disease Data Set that was created in 1988 by combining datasets collected in Budapest, Zurich, Basel and Cleveland. The dataset consists of 75 attributes and has 899 instances. The condition of the patient is labeled as either 0 (no heart disease) or 1 (heart disease).
+
+The dataset was made available by the University of California, Irvine (UCI) Machine Learning Repository under the Creative Commons Attribution 4.0 International license (\cite{janosi1988}). We will obtain the data by downloading the dataset and combining and cleaning the different files of the folder. It is planned to not use the 14 commonly used features that are chosen by the UCI but instead gain insights into all available features and combine the data into a new feature set that then is used to train models. 
+
+\section{How will you solve the problem?}
+\label{cha:solve}
+
+It is planned to solve the problem in multiple steps. These steps are described in more detail in the following. 
+
+\subsection{Preprocessing}
+%To solve the problem, the first step is to preprocess the data. Therefore, multiple different aspects need to be checked and adjusted if necessary. Depending on the gained insights of the data, the steps might vary while executing the preprocessing. 
+%
+%The first step will be to transform the raw data into a usable format.
+%
+%Then, the data will be analyzed and the usability of the data set will be increased through different actions. 
+%First, the missing values will be replaced with NaN to facilitate the analysis.
+%In addition to this, a validity test, a test for outliers and a test for duplicate entries will be conducted. Based on the provided result, rows or columns will be dropped that do not pass these tests. Furthermore, features with constant values will be dropped. 
+%Next, a check for inconsistencies between features and in the format of their values will be done. If there are inconsistencies between features, a decision needs to be made on what feature will be used and which will be dropped. If there are differences in the format, a standard format will be chosen and consequently adopted in the data set.
+%Moreover, feature extraction and combination will be addressed. 
+%The next step of data preprocessing will be data normalization. For that, different transformers and scalers from the sci-kit learn library will be used. Also, feature binning will be used where needed. 
+%
+%Before the evaluation a feature reduction will be done to decrease the number of features and to increase the significance of the features. Therefore a correlation analysis is required to select the most significant features. Furthermore, this could also decrease the amount of required computing power and evaluation time. 
+%---
+To solve the problem, the first step is to preprocess the data. Therefore, multiple different aspects need to be checked and adjusted, if necessary. Depending on the gained insights of the data, the steps might vary while executing the preprocessing. 
+
+The first step will be to transform the raw data into a usable format and replace missing values with NaN to facilitate the analysis.
+Then, the data will be analyzed and the usability of the data set will be determined by looking for outliers and duplicates. In addition, a validity test is conducted. Based on the gained result, rows or columns will be dropped that do not seem usable. 
+Next, an analysis for inconsistencies and correlations between features will be conducted to decide what features should be used or dropped. If there are differences in the format, a standard format will be chosen and consequently adopted in the data set.
+Moreover, feature extraction and combination will be addressed. 
+The last step of the data preprocessing will be data normalization. For that, different transformers and scalers from the sci-kit learn library will be used.
+
+\subsection{Algorithms}
+
+To find the best results, multiple algorithms will be compared. Therefore, it is planned to use algorithms presented in the lecture (K-nearest neighbor, NaiveBayes, Decision Tree). Additionally Support vector classification, XGBoost, CatBoost, AdaBoost, RandomForest, IsolationForest and IsolationForest  will be used for comparison.
+
+To evaluate the different algorithms a simple cross validation will be applied. The best algorithms are then tuned with different hyperparameters using nested cross validation and compared regarding their scores, costs and explainability. 
+
+\section{How will you measure success?}
+\label{sec:success}
+
+The evaluation method to select the best algorithm is selected according to the data distribution after the  preprocessing. In the raw data, there is a ratio of 404 healthy individuals to 495 diseased individuals. This would favor the use of the f1 score. However, it is not possible to predict whether this will still be the case after the data processing. 
+Furthermore, the metric of other published models is adapted for  comparison. 
+In general, the goal is to predict as accurately as possible. Nevertheless, a non-recognition of a disease is considered as more severe than a false positive diagnosis. Consequently, a penalty weighting against false negatives would be justified.
+
+% The success of this approach can be measured by comparing existing models trained on the 14 features against our models. \todo
+\newpage
+\section{What do you expect your results to look like?}
+\label{sec:results}
+
+It is assumed that it is possible to identify diseases on the basis of other symptomatology, as this can already be achieved in medicine today through targeted questions. 
+
+Based on our models, we want to identify a minimal set of features that can be used to make a diagnosis about heart diseases with the highest possible reliability. This could lead to a more efficient diagnosis of heart diseases and would also decrease the amount of medical tests and examinations needed beforehand. Consequently, the human error rate could be decreased as well. 
+Not only would this benefit medical facilities as time and money can be saved but the results should also provide helpful insights to the patients.
+
+Furthermore, the goal is to compare our results to the preprocessed data set with the 14 features and analyze how the two results differ. Therefore, in the end the usability of our models can be assessed based on the accuracy and other measures. 
+
+\vspace{2cm}
+\begin{small}
+  \printbibliography
+\end{small}
+
+\pagestyle{plain}
+
+\end{document}

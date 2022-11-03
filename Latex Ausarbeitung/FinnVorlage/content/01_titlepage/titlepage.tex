@@ -1,0 +1,70 @@
+% Current file is content/01_titlepage/tilepage.tex
+
+\thispagestyle{empty}
+\ifthenelse{\boolean{englischeVersion}}
+{
+	\begin{titlepage}
+		\vspace*{2cm}
+	  \begin{center}
+	   {\Large Analysis of Heart Disease Data\\}
+	   \vspace{2cm} 
+	   {Proposal\\}
+	   \vspace{2cm}
+	   {presented by\\
+		   Club der toten Dichten (Team 12)\\
+		Marie-Christin Häge, 1913888 \\
+		Finn Hülsbuch, 1913864 \\
+		Thilo Dieing, 1692328 \\
+		Lasse Lemke, 1914420 \\
+		Eric Jacquomé, 1903834 \\
+		Timotheus Gumpp, 1913876 \\
+	   }
+	   \vspace{1cm} 
+	   {submitted to the\\
+		Data and Web Science Group\\
+		Prof.\ Dr.\ Heiko Paulheim\\
+		University of Mannheim\\} \vspace{2cm}
+	   {October 2022}
+	  \end{center}
+	\end{titlepage} 
+}
+{
+\begin{titlepage}
+	\enlargethispage{4cm}
+	\begin{figure}
+		% \vspace*{-5mm} 
+		\begin{minipage}{0.49\textwidth}
+			\flushleft
+			\missingfigure[figheight=2.5cm, figcolor=white]{Insert company logo here} 
+			%\includegraphics[height=2.5cm]{images/logos/...} 
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.49\textwidth}
+			\flushright
+			\includegraphics[height=2.5cm]{images/logos/dhbw.pdf} 
+		\end{minipage}
+	\end{figure} 
+	\vspace*{0.1cm}
+	\begin{center}
+		\huge{\textbf{\titel}}\\[1.5cm]
+		\Large{\textbf{\arbeit}}\\[0.5cm]
+		\normalsize{im Rahmen der Prüfung zum\\[1ex] \textbf{\abschluss}}\\[0.5cm]
+		\Large{des Studienganges \studiengang}\\[1ex]
+		\normalsize{an der Dualen Hochschule Baden-Württemberg \dhbwStandort}\\[1cm]
+		\normalsize{von}\\[1ex] \Large{\textbf{\vorname\,\nachname}} \\[1cm]
+		\normalsize{{\printdayoff\today}}\\[2.25cm]
+		\begin{spacing}{0.8}
+			\begin{tabular}{ll}
+				\textbf{Abgabedatum}				\hspace{4.5cm}					& \printdate{\abgabeDatum}\\[0.2cm]
+				\textbf{Bearbeitungszeitraum}       				&  \daterange{\bearbeitungszeitraumBeginn}{\bearbeitungszeitraumEnde}\\[0.2cm]
+				\textbf{Matrikelnummer, Kurs} 					   	&  \matrikelnr, \kurs\\[0.2cm]
+				\textbf{Ausbildungsfirma}              					 &  \firmaName\\
+																						& \firmaStrasse \\
+																						& \firmaPlz\\[0.2cm]
+				\textbf{Betreuer der Ausbildungsfirma}          &  \betreuerFirma\\[0.2cm]
+				\textbf{Gutachter der Dualen Hochschule}    &  \betreuerDhbw\\[0.2cm]
+			\end{tabular} 
+		\end{spacing}
+	\end{center}
+\end{titlepage}
+}

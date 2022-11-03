@@ -1,0 +1,16 @@
+% Current file is content/00_LaTeX/sourceCodeStyle/languages/Python.tex
+
+%-- Eigene Farben für den Style
+\definecolor{PyKeywordsBlue}{HTML}{0000AC}
+\definecolor{PyCommentGrey}{HTML}{808080}
+\definecolor{PyStringGreen}{HTML}{008080}
+
+% -- Eigener Python-Style für den Quellcode
+\renewcommand{\ttdefault}{pcr}
+\lstdefinestyle{EigenerPythonStyle}{
+	language=Python,
+	columns=flexible,
+	keywordstyle=\bfseries\color{PyKeywordsBlue},
+	commentstyle=\itshape\color{PyCommentGrey},
+	stringstyle=\color{PyStringGreen}
+}

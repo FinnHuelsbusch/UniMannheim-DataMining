@@ -1,0 +1,29 @@
+% Current file is content/00_LaTeX/sourceCodeStyle/languages/XML&XSD.tex
+
+% -- Eigene Farben für den Style
+\definecolor{XMLGruen}{rgb}{0.3,0.5,0.4}
+
+% -- Eigener XML/XSD-Style für den Quellcode
+\renewcommand{\ttdefault}{pcr}
+\lstdefinestyle{EigenerXSDStyle}{
+	language=XML,                     
+	stringstyle=\color{XMLGruen},
+	morekeywords={
+		encoding,
+		xs:schema,
+		xs:element,
+		xs:complexType,
+		xs:sequence,
+		xs:attribute,
+		xs:simpleContent,
+		xs:extension base, 
+		encoding,
+		schema,
+		element,
+		complexType,
+		sequence,
+		attribute,
+		simpleContent,
+		extension base
+	}
+}
