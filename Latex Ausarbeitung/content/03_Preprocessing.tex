@@ -1,2 +1,61 @@
 \chapter{Preprocessing}
+We approached preprocessing in two steps. Step one is manipulating the data based on knowledge we obtained in the Data Understanding section. 
+As we have a small data set, we were able to try different functions for imputing etc. in Step 2.
+
+
+\section{Knowledge}
+Firstly, we implemented a custom loading function to transform the 4 datasets into one csv formatted file, so we could read it in as a data pandas dataframe.
+
+\paragraph{Dropping features:}
+Using a correlation analysis, we were able to pinpoint variables, that directly identify the result. 
+The dataset also contains irrelevant features including IDs, constants and dates. We consider dates irrelevant for our analysis because they are in a close range of less than two years, and we don’t expect a change in medical parameters from an evolutionary standpoint.
+For some features we were not able to identify their meaning as they were considered irrelevant by the UCI  and not described anywhere else.
+All these features were dropped
+
+\paragraph{Duplicates:}
+As described in the above section pncaden is the sum of painlox painexer and relrest so it contains duplicate information and therefore is dropped.
+
+\paragraph{New features:}
+We did not see the need for new features but enriched the features smoke’ using years’ and cigs’ and thereby gained a feature with 60\% values instead of 30 \%. 
+
+\paragraph{Inconsistencies:}
+Checking for inconsistencies between features did not reveal any problems.
+
+\paragraph{Outliers and Validity tests of attributes:}
+All remaining features were carefully examined using boxplots and no extreme outliers were found. The values of noteworthy examples were looked up and compared to examples we found from different sources. Some values were higher/ lower than standard ranges, which can be explained by the fact that our dataset contains sick persons. However, no values that were considered too extreme to be realistic were found. 
+
+\paragraph{Correlation:}
+The remaining features were analyzed regarding their (pearson) correlation. This analysis revealed no features with substantive amount of data (\textless 10\% NaN ) that have a medium or high correlation. Therefore no features were dropped in this step.
+
+\paragraph{Further manipulation:}
+The features a,b,c were oneHotEncoded as they represent categorical, non-ordinal values. We tried binning with the features d,e,f.
+
+\section{hyperparameter tuning }
+For Hyperparameters and methods were we could not be certain, we tried out multiple different version.
+
+\paragraph{Number of missing values}
+Diagram X shows the number of features, that have less than X \% missing data. It becomes apparent that there are certain steps where the number of features goes up a lot. We tried the steps 0,4,8,20,35,60,75 and 100 \% in the model.
+
+\paragraph{Imputement}
+Two different approaches for imputement are tried. The first one is the simple imputer. Missing values are replaced by the mean, median or mode of the feature. Also the KNN imputer was tried with the values 2-9 as the number of neighbours. The iterative imputer was not used as bugs were observed.
+
+\paragraph{Standardizing} 
+To account for the different ranges of the features different scalers were tried out with different hyperparameters. We only used scalers that are applicable for all integers as some features contain negative values. Only the described hyperparameters were tuned. \newline
+The \textbf{MaxAbsScaler} scales the values of each feature by the maximum absolute value. Therefore, all values in [-1,1] can occur after scaling. \newline
+Using the \textbf{MinMaxScaler} results in values in [0,1] by shifting by the negative minimum and scaling by $maximum - minimum$\newline
+The values were normalized using the norms l1,l2 and max in the \textbf{Normalizer}. \newline
+The \textbf{PowerTransformer} alters the data to represent a gaußian like distribution. This is mostly used if heteroskedasticity occurs in the data. It was tried to fit the data to a standard normal distribution and without shifting and scaling by its mean and variance. \newline
+The \textbf{RobustScaler} was tried with and without scaling by the interquartile range and with and without shifting beforehand.\newline
+The \textbf{Standardscaler} was used with and without shifting by the mean and scaling by the standard deviation.\newline
+It was also tried, manly for comparison, to \textbf{passthrough} the values as they are.\newline
+
+\paragraph{Resampling}
+To account for the different amounts of healthy and unhealthy patients we tried oversampling and undersampling in the trainingdata in comparison to just passing the values through.
+
+
+
+\section{section }
+\subsection{subsection }
+\subsubsection{subsubsection }
+
 
