@@ -4,58 +4,30 @@ As we have a small data set, we were able to try different functions for imputin
 
 
 \section{Knowledge}
-Firstly, we implemented a custom loading function to transform the 4 datasets into one csv formatted file, so we could read it in as a data pandas dataframe.
+Firstly, we implemented a custom loading function to transform the 4 datasets into a csv format, so we could read it in as a data pandas dataframe.
 
-\paragraph{Dropping features:}
-Using a correlation analysis, we were able to pinpoint variables, that directly identify the result. 
-The dataset also contains irrelevant features including IDs, constants and dates. We consider dates irrelevant for our analysis because they are in a close range of less than two years, and we don’t expect a change in medical parameters from an evolutionary standpoint.
-For some features we were not able to identify their meaning as they were considered irrelevant by the UCI  and not described anywhere else.
-All these features were dropped
-
-\paragraph{Duplicates:}
-As described in the above section pncaden is the sum of painlox painexer and relrest so it contains duplicate information and therefore is dropped.
-
-\paragraph{New features:}
-We did not see the need for new features but enriched the features smoke’ using years’ and cigs’ and thereby gained a feature with 60\% values instead of 30 \%. 
-
-\paragraph{Inconsistencies:}
-Checking for inconsistencies between features did not reveal any problems.
-
-\paragraph{Outliers and Validity tests of attributes:}
-All remaining features were carefully examined using boxplots and no extreme outliers were found. The values of noteworthy examples were looked up and compared to examples we found from different sources. Some values were higher/ lower than standard ranges, which can be explained by the fact that our dataset contains sick persons. However, no values that were considered too extreme to be realistic were found. 
-
-\paragraph{Correlation:}
-The remaining features were analyzed regarding their (pearson) correlation. This analysis revealed no features with substantive amount of data (\textless 10\% NaN ) that have a medium or high correlation. Therefore no features were dropped in this step.
-
-\paragraph{Further manipulation:}
-The features a,b,c were oneHotEncoded as they represent categorical, non-ordinal values. We tried binning with the features d,e,f.
+\paragraph{Feature analysis:}
+We removed the features lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox and rcadist, as our target variable num is a combination of these according to the UCI. Furthermore, the features restckm, exerckm, thalsev, thalpul, earlobe, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant by the UCI and we were not able to get their meaning from other sources, so we also dropped them. Other irrelevant columns we removed were IDs(id,ccf), constants(name) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we do not expect a systematic change of the values over time, as their timespan of eight years (1980-1987) is very small from an evolutionary view. We dropped the feature pncaden because it is the sum of painlox, painexer and relrest and therefore contains no additional information. Looking at the remaining features we did not find the need to create additional features, but enriched the feature smoke using years and cigs. We reduced the number of missing values from 74.4\% to 43\%. A check for inconsistencies between the remaining features did not reveal any problems.
+To visually check for outliers we created a box plot of all numeric(?) features. The features trestbps and trestbpd showed extreme outliers with a value of 0. We assumed these were incorrectly specified NaNs and therefore replaced them by NaN. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
+The remaining features were analysed regarding their pearson correlation. Only four pairs of features with substantive amount of data (less than 25\% NaNs) have a very strong correlation (>75\%).  These are rldv5<->rldv5e, painexer<->cp, cp<->relrest and ca<->cathef. While the all those high correlations seem intuitive to us, each feature still has some additional value, so we decided to keep these features. For example we expect persons with pain when exercising (painexer) to also have more chest pain(cp) than the average person. However a person that only has pain when exercising might not be as likely to have a heart disease as as person who always hast chest pain. (rewrite. cp is categorical...)
+The features cp, restecg, slope, ca and restwm were oneHotEncoded as they represent categorical, non-ordinal values. 
 
 \section{hyperparameter tuning }
-For Hyperparameters and methods were we could not be certain, we tried out multiple different version.
-
-\paragraph{Number of missing values}
-Diagram X shows the number of features, that have less than X \% missing data. It becomes apparent that there are certain steps where the number of features goes up a lot. We tried the steps 0,4,8,20,35,60,75 and 100 \% in the model.
-
-\paragraph{Imputement}
-Two different approaches for imputement are tried. The first one is the simple imputer. Missing values are replaced by the mean, median or mode of the feature. Also the KNN imputer was tried with the values 2-9 as the number of neighbours. The iterative imputer was not used as bugs were observed.
-
-\paragraph{Standardizing} 
-To account for the different ranges of the features different scalers were tried out with different hyperparameters. We only used scalers that are applicable for all integers as some features contain negative values. Only the described hyperparameters were tuned. \newline
-The \textbf{MaxAbsScaler} scales the values of each feature by the maximum absolute value. Therefore, all values in [-1,1] can occur after scaling. \newline
-Using the \textbf{MinMaxScaler} results in values in [0,1] by shifting by the negative minimum and scaling by $maximum - minimum$\newline
-The values were normalized using the norms l1,l2 and max in the \textbf{Normalizer}. \newline
-The \textbf{PowerTransformer} alters the data to represent a gaußian like distribution. This is mostly used if heteroskedasticity occurs in the data. It was tried to fit the data to a standard normal distribution and without shifting and scaling by its mean and variance. \newline
-The \textbf{RobustScaler} was tried with and without scaling by the interquartile range and with and without shifting beforehand.\newline
-The \textbf{Standardscaler} was used with and without shifting by the mean and scaling by the standard deviation.\newline
-It was also tried, manly for comparison, to \textbf{passthrough} the values as they are.\newline
-
-\paragraph{Resampling}
-To account for the different amounts of healthy and unhealthy patients we tried oversampling and undersampling in the trainingdata in comparison to just passing the values through.
+For Hyperparameters and methods were we could not be certain, we tried out multiple different combinations of hyperparameters.
+Firstly, we tried binning the feature age. We chose either 2, 4 or 5 bins or no binning at all. We decided to use equal width binning so that the age groups are simpler and more intuitive to a doctor.
+Diagram X shows the number of features, that have less than X \% missing data and how many cells we would need to impute if we included them. It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, we tried the steps 0, 4, 8, 20, 35, 60, 75 and 100 \% in the model.
+To impute the missing data we used a simple imputer. Missing values are replaced by the mean, median or mode of the feature. We decided against using a KNN imputer, because its computation time is much larger than the computation time of the simple imputer and we did not have enough time to try it. The iterative imputer was not used, as bugs were observed.
+To account for the different ranges of the features different scalers were tried out. We only used scalers that are applicable for all integers as some features contain negative values. 
+We compared the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, Standardscaler and Normalizer. As the hyperparameters of most scalers turn on or off core functionalities of the scaler, we decided to only tune the hyperparameter norm of the Normalizer with the norms l1,l2 and max.
+To account for the different amounts of healthy and unhealthy patients we tried oversampling and undersampling in the training data in comparison to just passing the values through.
 
 
 
-\section{section }
-\subsection{subsection }
-\subsubsection{subsubsection }
 
-
+%The \textbf{MaxAbsScaler} scales the values of each feature by the maximum absolute value. Therefore, all values in [-1,1] can occur after scaling. \newline
+%Using the \textbf{MinMaxScaler} results in values in [0,1] by shifting by the negative minimum and scaling by $maximum - minimum$\newline
+%The values were normalized using the norms l1,l2 and max in the \textbf{Normalizer}. \newline
+%The \textbf{PowerTransformer} alters the data to represent a gaußian like distribution. This is mostly used if heteroskedasticity occurs in the data. It was tried to fit the data to a standard normal distribution and without shifting and scaling by its mean and variance. \newline
+%The \textbf{RobustScaler} was tried with and without scaling by the interquartile range and with and without shifting beforehand.\newline
+%The \textbf{Standardscaler} was used with and without shifting by the mean and scaling by the standard deviation.\newline
+%It was also tried, manly for comparison, to \textbf{passthrough} the values as they are.\newline
