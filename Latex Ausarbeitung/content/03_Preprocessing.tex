@@ -4,32 +4,24 @@ Secondly, we tried many different approaches to transform the data, where we cou
 
 \section{Cleaning}
 Firstly, we implemented a custom loading function to transform the 4 datasets into a csv format, so we could use it further on.
-We removed the features lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox and rcadist, as our target variable num is a combination of these according to the UCI. 
-%because they encode if the referenced arteria is narrowed. This makes them hidden classifiers.
-
-
-Furthermore, the features restckm, exerckm, thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant by the UCI, so we also dropped them. Other irrelevant columns we removed were IDs(id,ccf), constants(name, earlobe) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  the examination does not affect its outcome. 
-
+We removed the features lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox and rcadist, as our target variable num is a combination of these according to the UCI. %because they encode if the referenced arteria is narrowed. This makes them hidden classifiers.
+Furthermore, the features restckm, exerckm, thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant by the UCI, so we also dropped them. Other irrelevant columns we removed were IDs(id,ccf), constants(name, earlobe) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
 We dropped the feature pncaden because it is the sum of painlox, painexer and relrest and therefore contains no additional information. 
-
 The features cp, restecg, slope, ca and restwm were oneHotEncoded as they represent categorical values.
-
-A check for inconsistencies between the remaining features did not reveal any problems. 
-
+A check for inconsistencies between the remaining features did not reveal any problems. (?)
 To check for outliers we created a box plot of all numeric(?) features. The features trestbps and trestbpd showed extreme outliers with a value of 0. These are incorrectly specified NaNs and were therefore replaced by NaN. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
-
-The remaining features were analysed regarding their pearson correlation. Only two pairs of features with substantive amount of data (less than 25\% NaNs) have a very strong correlation (\>80\%).  These are cp_4\<-\>painexer and rldv5\<-\>rldv5e. The high correlation between cp_4 and painexer is intuitive, because cp_4, which was oneHotEncoded from the categorical variable cp, describes wether the patient has no chest pain at rest. Painexer describes wether the patient only has pain when exercising. 
-
-Concluding from the high correlation between resting heart amplitude (rldv5) and heart amplitude when exercising (rldv5e), we decided to create a new feature by using the difference between these and to drop the feature rldv5e. Thereby no information is lost and a highly correlated pair is removed. Furthermore we enriched the feature smoke using years and cigs. Hereby, we reduced the number of \texttt{NaN}s from 74.4\% to 43\%. 
+The remaining features were analysed regarding their pearson correlation. Only two pairs of features with substantive amount of data (less than 25\% NaNs) have a very strong correlation (\>80\%).  
+These are cp\_4$\leftrightarrow$painexer and rldv5$\leftrightarrow$rldv5e. The highest correlation is between cp\_4 and painexer. The feature cp\_4, which was oneHotEncoded from the categorical variable cp, describes wether the patient has no chest pain at rest. Painexer describes wether the patient only has pain when exercising. 
+Concluding from the high correlation between the EKG amplitude when resting (rldv5) and the EKG amplitude when exercising (rldv5e), we decided to create a new feature by using the difference between these and to drop the feature rldv5e. Thereby no information is lost and a highly correlated pair is removed. Furthermore, we enriched the feature smoke using years and cigs. Hereby, we reduced the number of \texttt{NaN}s from 74.4\% to 43\%. 
 
 \section{Hyperparameter Tuning }
-For Hyperparameters and methods were we could not be certain, we tried out multiple different combinations of hyperparameters.
+For hyperparameters and methods were we could not be certain, we tried out multiple different combinations.
 Firstly, we tried binning the feature age. We chose either 2 or 5 bins or no binning at all. We decided to use equal width binning so that the age groups are simpler and more intuitive to a doctor.
 Diagram HIER\_KOMMT\_EIN\_VERWEIS\_AUF\_EIN\_DIAGRAMM\_HIN shows the number of features, that have less than X\% missing data and how many cells we would need to impute if we included them. It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, we tried the steps 0, 4, 8, 20, 35, 60, 75 and 100 \% in the model. They are shown as vertical lines in the graph.
-To impute the missing data we used a simple imputer. Missing values are replaced by the mean, median or mode of the feature. We decided against using a KNN imputer, because its computation time is much larger than the computation time of the simple imputer and we did not have enough time to try it. The iterative imputer was not used, as bugs were observed.
+To impute the missing data we used a simple imputer. Missing values are replaced by the mean, median or mode of the feature. We decided against using a KNN imputer, because it is computationally much more expensive. The iterative imputer was not used, as bugs were observed. (?)
 To account for the different ranges of the features different scalers were tried out. We only used scalers that are applicable for all integers as some features contain negative values. 
 We compared the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, Standardscaler and Normalizer. As the hyperparameters of most scalers turn on or off core functionalities of the scaler, we decided to only tune the hyperparameter norm of the Normalizer with the norms l1, l2 and max.
-To account for the different amounts of healthy and unhealthy patients we tried oversampling and undersampling in the training data in comparison to just passing the values through.
+To account for the different amounts of healthy and unhealthy patients we tried oversampling and undersampling in the training data in comparison to passing the values through.
 
 
 
