@@ -1,4 +1,4 @@
-\documentclass[11pt,titlepage,oneside,openany]{book}
+\documentclass[11pt,titlepage,oneside,openany]{article}
 \usepackage{times}
 
 \usepackage[
@@ -16,6 +16,8 @@
 	natbib=true,
 	urldate=short                       % date in citations: https://tex.stackexchange.com/questions/89842/how-to-print-only-year-no-day-month-with-biblatex
 ]{biblatex}
+
+% Define the bibtex file containing the references 
 \addbibresource{references.bib}	
 
 
@@ -34,9 +36,14 @@
 %\usepackage{algorithms}
 \usepackage{algorithmicx}
 
-% CUSTOM PACKAGES
+
+
+% ====== CUSTOM PACKAGES ======
+
 % this package will help with German ä ü ö etc.
 \usepackage[utf8]{inputenc}
+
+% easy quoting with \say{}
 \usepackage{dirtytalk}
 
 % -- Varioref
@@ -111,7 +118,6 @@
    \vspace{2cm}
    {presented by\\
    	Club der toten Dichten (Team 12)\\
-    Marie-Christin Häge, 1913888 \\
     Finn Hülsbuch, 1913864 \\
     Thilo Dieing, 1692328 \\
     Lasse Lemke, 1914420 \\
@@ -162,7 +168,7 @@
 % =============================================
 
 
-%\chapter{Bibliography}
+\newpage
 \printbibliography
 
 %\vspace{2cm}
