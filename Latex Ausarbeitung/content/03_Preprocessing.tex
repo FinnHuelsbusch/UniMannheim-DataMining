@@ -1,20 +1,20 @@
 \newpage
 \section{Preprocessing}
-We approach preprocessing in two steps. In the first step we clean the data set based on knowledge we obtained in the Data Understanding section and further analysis. 
-Secondly, we try many different approaches to transform the data, where we can not be certain about the best method. 
+We approach preprocessing in two steps. In the first step we clean the data set\todo{data set vereinheitlichen} based on knowledge we obtained in the Data Understanding section and further analysis. 
+Secondly, we try many different approaches to transform the data, in instances where we can not be certain about the best method. \todo{der letzte halbsatz passt nicht}
 
 \subsection{Cleaning}
 Firstly, we implement a custom loading function to transform the 4 datasets into a csv format, so we can use it further on.
 
 We remove the false predictors lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox and rcadist, as our target variable num is a combination of these according to the UCI. %Nochmal angucken mit Finn.
 
-Furthermore, the features restckm, exerckm, thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant by the UCI, so we also drop them. Other irrelevant attributes we remove are IDs(id,ccf), constants(name, earlobe) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
+Furthermore, the features restckm, exerckm, thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant\todo{kontollieren ob das wirklich so vom uci spezifiziert wird} by the UCI, so we also drop them. Other irrelevant attributes we remove are IDs(id,ccf), constants(name, earlobe) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
 
 We drop the feature pncaden because it is the sum of painlox, painexer and relrest and therefore contains no additional information. 
 
 The features cp, restecg, slope, ca and restwm were oneHotEncoded as they represent categorical values.
 
-When checking for inconsistencies between features, we detected that thaltime is sometimes lower than thaldur. As thaltime describes the moment ST depression is noted within the exercise, it has to be lower than the duration of the exercise thaldur. We replace thaltime by \texttt{NaN} in all 17 instances that do not satisfy this criterion. 
+When checking for inconsistencies between features, we detected that thaltime is sometimes lower than thaldur\todo{ausschreiben, was die feature bedeuten, dass fehlt allgemein bis zu diesem Zeitpunkt} . As thaltime describes the moment \todo{fachbegriffe erklären bzw verweise rein} ST depression is noted within the exercise, it has to be lower than the duration of the exercise thaldur. We replace thaltime by \texttt{NaN} in all 17 instances that do not satisfy this criterion. 
 
 Also, the maximum heart rate (thalach) was replaced with \texttt{NaN} if it was lower than the heart rate at rest (thalrest).
 
@@ -24,7 +24,7 @@ Also, the maximum heart rate (thalach) was replaced with \texttt{NaN} if it was 
 	\caption{data distribution of all numeric elements}
 	\label{fig:dataDistribution}
 \end{figure}
-As shown in \ref{fig:dataDistribution} we created a normalized box plot of all numeric features to check for outliers. The features trestbps and trestbpd show extreme outliers with a value of 0. These are incorrectly specified \texttt{NaN}s and are therefore replaced by \texttt{NaN}. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
+As shown in \ref{fig:dataDistribution} we created a normalized box plot of all numeric features to check for outliers. The features trestbps and trestbpd show extreme outliers with a value of 0. These are incorrectly\todo{assumed?} specified \texttt{NaN}s and are therefore replaced by \texttt{NaN}. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
 
 The remaining features were analysed regarding their pearson correlation. Only two pairs of features with substantive amount of data (less than 75\% \texttt{NaN}s) have a very strong correlation (\>80\%).  
 
@@ -35,7 +35,7 @@ Concluding from the high correlation between the EKG amplitude when resting (rld
 Furthermore, we enrich the feature smoke using years and cigs. Hereby, we reduce the number of \texttt{NaN}s from 74\% to 43\%. 
 
 \subsection{Hyperparameter Tuning }
-For hyperparameters and methods where we could not be certain, we try out multiple different combinations.
+For hyperparameters and methods where we could not be certain, we try out multiple different combinations.\todo{liest sich doof}
 
 Firstly, we try binning the feature age. We choose either 2 or 5 bins or no binning at all. We decided to use equal width binning so that the age groups are simpler and more intuitive to a doctor.
 
@@ -49,7 +49,7 @@ Figure \ref{fig:percentageToBeDropped} shows the number of features, that have l
 
 To impute the missing data we use a simple imputer. Missing values are replaced by the mean, median or mode of the feature. We decided against using a KNN imputer, because it is computationally much more expensive. The iterative imputer is not used, as it is still experimental and therefore subject to change.
 
-To account for the different ranges of the features different scalers are tried out. We only use scalers that are applicable for all integers as some features contain negative values. 
+To account for the different ranges of the features different scalers are tried out. We only use scalers that are applicable for all integers as some features contain negative values. \todo{float nicht int also positive floats}
 We compare the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, Standardscaler and Normalizer. As the hyperparameters of most scalers turn on or off core functionalities of the scaler, we decided to only tune the hyperparameter norm of the Normalizer with the norms l1, l2 and max.
 
 To account for the different amounts of healthy and unhealthy patients we try oversampling and undersampling in the training data in comparison to passing the values through.
