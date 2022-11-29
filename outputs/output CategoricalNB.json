@@ -1,0 +1,151 @@
+{
+  "measurements": [
+    {
+      "scaler": "MaxAbsScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "MaxAbsScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "MaxAbsScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "MinMaxScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "MinMaxScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "MinMaxScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "Normalizer",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "Normalizer",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "Normalizer",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "index 1 is out of bounds for axis 1 with size 1"
+    },
+    {
+      "scaler": "PowerTransformer",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "PowerTransformer",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "PowerTransformer",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "RobustScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "RobustScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "RobustScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "StandardScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "StandardScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "StandardScaler",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "str",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "str",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to CategoricalNB (input X)"
+    },
+    {
+      "scaler": "str",
+      "estimator": "CategoricalNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "index 77 is out of bounds for axis 1 with size 77"
+    }
+  ]
+}
