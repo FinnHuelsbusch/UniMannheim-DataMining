@@ -1,24 +1,24 @@
 \newpage
 \section{Preprocessing} \label{sec:preprocessing}
 
-We approach preprocessing in two steps. In the first step we clean the data set\todo{data set vereinheitlichen} based on knowledge we obtained in the \todo{verlinken} Data Understanding section and further analysis. 
+We approach preprocessing in two steps. In the first step we clean the data set\todo{data set vereinheitlichen} based on knowledge we obtained in \cref{sec:dataUnderstanding} and further analysis. 
 Secondly, we transform the data using hyperparameter tuning.
 %Secondly, we try many different approaches to transform the data, in instances where we can not be certain about the best method. \todo{der letzte halbsatz passt nicht}
 
 \subsection{Cleaning}
 Firstly, we implement a custom loading function to transform the four datasets into \emph{CSV} format, so we can use it further on.
 
-We remove the false predictors \emph{lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox} and \emph{rcadist} \todo{Willst du ggf noch die anderen erwähnten features so machen wie die hier, dann ist das alles etwas übersichtlicher.} as our target variable num is a combination of these according to the UCI. %Nochmal angucken mit Finn.
+We remove the false predictors \emph{lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox} and \emph{rcadist} \todo{Willst du ggf noch die anderen erwähnten features so machen wie die hier, dann ist das alles etwas übersichtlicher.} as our target variable \emph{num} is a combination of these according to the UCI. %Nochmal angucken mit Finn.
 
-Furthermore, the features thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant or are not described by the UCI, so we also drop them. Other irrelevant attributes we remove are IDs (id,ccf), constants (name, earlobe, restckm, exerckm) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
+Furthermore, the features \emph{thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy} and \emph{junk} are considered irrelevant or are not described by the UCI, so we also drop them. Other irrelevant attributes we remove are IDs (\emph{id}), constants (\emph{ccf, name, earlobe, restckm, exerckm}) and dates of medical examinations (\emph{ekgmo, ekgday, ekgyr, cmo, cday, cyr}). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
 
-We drop the feature pncaden because it is the sum of painlox, painexer and relrest and therefore contains no additional information. 
+We drop the feature \emph{pncaden} because it is the sum of \emph{painlox, painexer} and \emph{relrest} and therefore contains no additional information. 
 
-The features cp, restecg, slope, ca and restwm were oneHotEncoded as they represent categorical values.
+The features \emph{cp, restecg, slope, ca} and \emph{restwm} were oneHotEncoded as they represent categorical values.
 
-When checking for inconsistencies between features, we detected that thaltime is sometimes lower than thaldur. As thaltime describes the moment a measurement is taken within the exercise, it has to be lower than the duration of the exercise thaldur. We replace thaltime by \texttt{NaN} in all 17 instances that do not satisfy this criterion. 
+When checking for inconsistencies between features, we detected that \emph{thaltime} is sometimes lower than \emph{thaldur}. As \emph{thaltime} describes the moment a measurement is taken within the exercise, it has to be lower than the duration of the exercise \emph{thaldur}. We replace \emph{thaltime} by \texttt{NaN} in all 17 instances that do not satisfy this criterion. 
 
-Also, the maximum heart rate (thalach) was replaced with \texttt{NaN} if it was lower than the heart rate at rest (thalrest).
+Also, the maximum heart rate (\emph{thalach}) was replaced with \texttt{NaN} if it was lower than the heart rate at rest (\emph{thalrest}).
 
 \begin{figure}[h]
 	\centering
@@ -26,21 +26,20 @@ Also, the maximum heart rate (thalach) was replaced with \texttt{NaN} if it was 
 	\caption{data distribution of all numeric elements}
 	\label{fig:dataDistribution}
 \end{figure}
-As shown in \cref{fig:dataDistribution} we created a normalized box plot of all numeric features to check for outliers. The features trestbps and trestbpd show extreme outliers with a value of 0. These are assumed to be incorrectly specified \texttt{NaN}s and are therefore replaced by \texttt{NaN}. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
+As shown in \cref{fig:dataDistribution} we created a normalized box plot of all numeric features to check for outliers. The features \emph{trestbps} and \emph{trestbpd} show extreme outliers with a value of 0. These are assumed to be incorrectly specified \texttt{NaN}s and are therefore replaced by \texttt{NaN}. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
 
-The remaining features were analysed regarding their pearson correlation. Only two pairs of features with substantive amount of data (less than 75\% \texttt{NaN}s) have a very strong correlation (>80\%).  
+The remaining features were analysed regarding their pearson correlation. Only two pairs of features with substantive amount of data ($<$75\% \texttt{NaN}s) have a very strong correlation ($>$80\%).  
+These are \emph{cp\_4} $\leftrightarrow$ \emph{painexer} and \emph{rldv5} $\leftrightarrow$ \emph{rldv5e}. The highest correlation is between \emph{cp\_4} and \emph{painexer}. The feature \emph{cp\_4}, which was oneHotEncoded from the categorical variable \emph{cp}, describes whether the patient has no chest pain at rest. Painexer describes whether the patient only has pain when exercising. 
 
-These are cp\_4 $\leftrightarrow$ painexer and rldv5 $\leftrightarrow$ rldv5e. The highest correlation is between cp\_4 and painexer. The feature cp\_4, which was oneHotEncoded from the categorical variable cp, describes whether the patient has no chest pain at rest. Painexer describes whether the patient only has pain when exercising. 
+Concluding from the high correlation between the EKG amplitude when resting (\emph{rldv5}) and the EKG amplitude when exercising (\emph{rldv5e}), we decided to create a new feature (\emph{rldv5\_diff}) by using the difference between these. We did the same with resting heart rate and maximum heart rate (\emph{thal\_diff} = \emph{thalach} - \emph{thalrest}). 
 
-Concluding from the high correlation between the EKG amplitude when resting (rldv5) and the EKG amplitude when exercising (rldv5e), we decided to create a new feature (rldv5\_diff) by using the difference between these. We did the same with resting heart rate and maximum heart rate (thal\_diff = thalach - thalrest). 
-
-Furthermore, we enrich the feature smoke using years and cigs. Hereby, we reduce the number of \texttt{NaN}s from 74\% to 43\%. 
+Furthermore, we enrich the feature \emph{smoke} using \emph{years} and \emph{cigs}. Hereby, we reduce the number of \texttt{NaN}s from 74\% to 43\%. 
 
 \subsection{Hyperparameter Tuning} \label{subsec:hyperparametertuning}
-Additionally to the hyperparamter tuning of the estimators, which is described in \cref{sec:preprocessing}, we also optimize which method is used with which hyperparameters in the preprocessing steps.
+Additionally to the hyperparamter tuning of the estimators, which is described in \cref{sec:datamining}, we also optimize which method is used with which hyperparameters in the preprocessing steps.
 %For hyperparameters and methods where we could not be certain, we try out multiple different combinations.\todo{liest sich doof}
 
-Firstly, we try binning the feature age. We choose either 2 or 5 bins or no binning at all. We decided to use equal width binning so that the age groups are simpler and more intuitive to a doctor.
+Firstly, we try binning the feature \emph{age}. We choose either 2 or 5 bins or no binning at all. We decided to use equal width binning so that the age groups are simpler and more intuitive to a doctor.
 
 \begin{figure}[h]
 	\centering
