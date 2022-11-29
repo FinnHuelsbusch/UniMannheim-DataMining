@@ -9,13 +9,13 @@ Firstly, we implement a custom loading function to transform the 4 datasets into
 
 We remove the false predictors lmt, ladprox, laddist, diag, cxmain, ramus, om1, om2, rcaprox and rcadist, as our target variable num is a combination of these according to the UCI. %Nochmal angucken mit Finn.
 
-Furthermore, the features thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy\todo{dummy ist nicht beschrieben} and junk are considered irrelevant by the UCI, so we also drop them. Other irrelevant attributes we remove are IDs(id,ccf), constants \todo{or empty features}(name, earlobe, restckm, exerckm) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
+Furthermore, the features thalsev, thalpul, lvx1, lvx2, lvx3, lvx4, lvf, dummy and junk are considered irrelevant or are not described by the UCI, so we also drop them. Other irrelevant attributes we remove are IDs(id,ccf), constants (name, earlobe, restckm, exerckm) and dates of medical examinations (ekgmo, ekgday, ekgyr, cmo, cday, cyr). We consider these dates irrelevant because we assume that the date of  an examination does not affect its outcome. 
 
 We drop the feature pncaden because it is the sum of painlox, painexer and relrest and therefore contains no additional information. 
 
 The features cp, restecg, slope, ca and restwm were oneHotEncoded as they represent categorical values.
 
-When checking for inconsistencies between features, we detected that thaltime is sometimes lower than thaldur\todo{ausschreiben, was die feature bedeuten, dass fehlt allgemein bis zu diesem Zeitpunkt} . As thaltime describes the moment \todo{fachbegriffe erklären bzw verweise rein} a measurement is taken within the exercise, it has to be lower than the duration of the exercise thaldur. We replace thaltime by \texttt{NaN} in all 17 instances that do not satisfy this criterion. 
+When checking for inconsistencies between features, we detected that thaltime is sometimes lower than thaldur. As thaltime describes the moment a measurement is taken within the exercise, it has to be lower than the duration of the exercise thaldur. We replace thaltime by \texttt{NaN} in all 17 instances that do not satisfy this criterion. 
 
 Also, the maximum heart rate (thalach) was replaced with \texttt{NaN} if it was lower than the heart rate at rest (thalrest).
 
@@ -25,7 +25,7 @@ Also, the maximum heart rate (thalach) was replaced with \texttt{NaN} if it was 
 	\caption{data distribution of all numeric elements}
 	\label{fig:dataDistribution}
 \end{figure}
-As shown in \ref{fig:dataDistribution} we created a normalized box plot of all numeric features to check for outliers. The features trestbps and trestbpd show extreme outliers with a value of 0. These are incorrectly\todo{assumed?} specified \texttt{NaN}s and are therefore replaced by \texttt{NaN}. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
+As shown in \ref{fig:dataDistribution} we created a normalized box plot of all numeric features to check for outliers. The features trestbps and trestbpd show extreme outliers with a value of 0. These are assumed to be incorrectly specified \texttt{NaN}s and are therefore replaced by \texttt{NaN}. All other outliers are not as extreme and come in groups. As the data contains sick persons, values diverging from the norm are expected. For these reasons we decided to keep these outliers as they can be a strong indication of a heart disease.
 
 The remaining features were analysed regarding their pearson correlation. Only two pairs of features with substantive amount of data (less than 75\% \texttt{NaN}s) have a very strong correlation (\>80\%).  
 
@@ -47,7 +47,7 @@ Firstly, we try binning the feature age. We choose either 2 or 5 bins or no binn
 	\caption{Number of features and values to be imputed by number of \texttt{NaN}s}
 	\label{fig:percentageToBeDropped}
 \end{figure}
-Figure \ref{fig:percentageToBeDropped} shows the number of features, that have less than a certain number of missing data and how many cells we would need to impute if we included these features. It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, we try the steps 0, 4, 8, 20, 35, 60, 75 and 100 \% in the model. They are shown as vertical lines in the graph. Additionally, we decided to drop features based on their correlation. For this we decided to use the steps [X,X,X,X].
+Figure \ref{fig:percentageToBeDropped} shows the number of features, that have less than a certain number of missing data and how many cells we would need to impute if we included these features. It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, we try the steps 0, 4, 8, 20, 35, 60, 75 and 100 \% in the model. They are shown as vertical lines in the graph. \todo{Additionally, we decided to drop features based on their correlation. For this we decided to use the steps [X,X,X,X].}
 
 To impute the missing data we use a simple imputer. Missing values are replaced by the mean, median or mode of the feature. We decided against using a KNN imputer, because it is computationally much more expensive. The iterative imputer is not used, as it is still experimental and therefore subject to change.
 
