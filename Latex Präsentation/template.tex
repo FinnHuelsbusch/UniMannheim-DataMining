@@ -222,6 +222,8 @@
 
 %------------------------------------------------
 
+\subsection{Dataset descriptions}
+
 \begin{frame}
 	\frametitle{Dataset descriptions}
 	\framesubtitle{Data origin }
@@ -232,15 +234,13 @@
 			\item Schweiz (115/8)
 			\item Ungarn (106/188)
 			\item USA Cleveland (125/157)
-			\item Long Beach (149/51)
+			\item USA Long Beach (149/51)
 			\item [\ding{222}] Total 495 positive 404 negative = 899 measurements
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
-
-\subsection{Blocks}
 
 \begin{frame}
 	\frametitle{Dataset descriptions}
@@ -256,6 +256,32 @@
 			\item [\ding{222}] 21245 missing values = 31\% Missing
 		\end{itemize}
 	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{Data understanding}
+
+\begin{frame}
+	\frametitle{Data understanding}
+	\framesubtitle{Missing Features}
+	\begin{figure}
+		\includegraphics[width=0.95\linewidth]{minimumPercentageToBeDropped.png}
+		\caption{Development of the number of imputed cells and features over \texttt{minimumPercentageToBeDropped}}
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{Data understanding}
+
+\begin{frame}[<+->]
+	\frametitle{Data understanding}
+	\framesubtitle{Missing Features}
+	\begin{figure}
+		\includegraphics[width=0.95\linewidth]{minimumPercentageToBeDroppedWithThreasholds.png}
+		\caption{Development of the number of imputed cells and features over \texttt{minimumPercentageToBeDropped}}
+	\end{figure}
 \end{frame}
 
 %------------------------------------------------
