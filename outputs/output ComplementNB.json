@@ -1,0 +1,582 @@
+{
+  "measurements": [
+    {
+      "scaler": "MaxAbsScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "MaxAbsScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "MaxAbsScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "MinMaxScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "X_shape": [899, 43],
+      "one_hot_encoded_features": ["cp", "restecg", "slope", "ca", "restwm"],
+      "parameters": {
+        "estimator__alpha": [
+          0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5,
+          7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5,
+          13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0,
+          18.5, 19.0, 19.5
+        ],
+        "estimator__norm": [true, false],
+        "impute__strategy": ["mean", "median", "most_frequent"],
+        "drop_columns__minimum_percentage_to_be_dropped": [
+          0, 4, 8, 20, 35, 60, 75, 100
+        ],
+        "oneHotEncoder__discretize": [
+          "passthrough",
+          {
+            "dtype": null,
+            "encode": "ordinal",
+            "n_bins": 2,
+            "random_state": null,
+            "strategy": "uniform",
+            "subsample": "warn"
+          },
+          {
+            "dtype": null,
+            "encode": "ordinal",
+            "n_bins": 5,
+            "random_state": null,
+            "strategy": "uniform",
+            "subsample": "warn"
+          }
+        ]
+      },
+      "auc_mean": 77.48321304131409,
+      "execution_time_in_seconds": 1848.581953048706,
+      "best_params": {
+        "drop_columns__minimum_percentage_to_be_dropped": 100,
+        "estimator__alpha": 19.5,
+        "estimator__norm": true,
+        "impute__strategy": "mean",
+        "oneHotEncoder__discretize": {
+          "dtype": null,
+          "encode": "ordinal",
+          "n_bins": 2,
+          "random_state": null,
+          "strategy": "uniform",
+          "subsample": "warn"
+        }
+      },
+      "auc": [
+        0.8227974116475858, 0.7598307615729218, 0.7740169238427078,
+        0.8656047784967645, 0.815, 0.7924999999999999, 0.815, 0.815,
+        0.6349999999999999, 0.6535714285714285
+      ],
+      "classification_report": {
+        "0": {
+          "precision": [
+            0.7906976744186046, 0.7777777777777778, 0.7692307692307693,
+            0.8536585365853658, 0.7555555555555555, 0.8055555555555556,
+            0.8333333333333334, 0.8333333333333334, 0.6666666666666666, 0.72
+          ],
+          "recall": [
+            0.8292682926829268, 0.6829268292682927, 0.7317073170731707,
+            0.8536585365853658, 0.85, 0.725, 0.75, 0.75, 0.45, 0.45
+          ],
+          "f1-score": [
+            0.8095238095238095, 0.7272727272727273, 0.7499999999999999,
+            0.8536585365853658, 0.7999999999999998, 0.7631578947368423,
+            0.7894736842105262, 0.7894736842105262, 0.5373134328358209,
+            0.5538461538461539
+          ],
+          "support": [41, 41, 41, 41, 40, 40, 40, 40, 40, 40]
+        },
+        "1": {
+          "precision": [
+            0.851063829787234, 0.7592592592592593, 0.7843137254901961,
+            0.8775510204081632, 0.8666666666666667, 0.7962962962962963,
+            0.8148148148148148, 0.8148148148148148, 0.6507936507936508, 0.65625
+          ],
+          "recall": [
+            0.8163265306122449, 0.8367346938775511, 0.8163265306122449,
+            0.8775510204081632, 0.78, 0.86, 0.88, 0.88, 0.82, 0.8571428571428571
+          ],
+          "f1-score": [
+            0.8333333333333334, 0.796116504854369, 0.8, 0.8775510204081631,
+            0.8210526315789474, 0.826923076923077, 0.8461538461538461,
+            0.8461538461538461, 0.7256637168141592, 0.743362831858407
+          ],
+          "support": [49, 49, 49, 49, 50, 50, 50, 50, 50, 49]
+        },
+        "accuracy": [
+          0.8222222222222222, 0.7666666666666667, 0.7777777777777778,
+          0.8666666666666667, 0.8111111111111111, 0.8, 0.8222222222222222,
+          0.8222222222222222, 0.6555555555555556, 0.6741573033707865
+        ],
+        "macro avg": {
+          "precision": [
+            0.8208807521029193, 0.7685185185185186, 0.7767722473604827,
+            0.8656047784967645, 0.8111111111111111, 0.8009259259259259,
+            0.8240740740740741, 0.8240740740740741, 0.6587301587301587, 0.688125
+          ],
+          "recall": [
+            0.8227974116475858, 0.7598307615729218, 0.7740169238427078,
+            0.8656047784967645, 0.815, 0.7925, 0.815, 0.815, 0.635,
+            0.6535714285714286
+          ],
+          "f1-score": [
+            0.8214285714285714, 0.7616946160635482, 0.7749999999999999,
+            0.8656047784967644, 0.8105263157894735, 0.7950404858299596,
+            0.8178137651821862, 0.8178137651821862, 0.6314885748249901,
+            0.6486044928522805
+          ],
+          "support": [90, 90, 90, 90, 90, 90, 90, 90, 90, 89]
+        },
+        "weighted avg": {
+          "precision": [
+            0.823563692341525, 0.7676954732510288, 0.7774426009720128,
+            0.8666666666666667, 0.817283950617284, 0.8004115226337448,
+            0.823045267489712, 0.823045267489712, 0.6578483245149911,
+            0.6849016853932584
+          ],
+          "recall": [
+            0.8222222222222222, 0.7666666666666667, 0.7777777777777778,
+            0.8666666666666667, 0.8111111111111111, 0.8, 0.8222222222222222,
+            0.8222222222222222, 0.6555555555555556, 0.6741573033707865
+          ],
+          "f1-score": [
+            0.8224867724867724, 0.7647543395116211, 0.7772222222222223,
+            0.8666666666666667, 0.8116959064327486, 0.7985829959514171,
+            0.8209626630679262, 0.8209626630679262, 0.6419524794904532,
+            0.6581867967967202
+          ],
+          "support": [90, 90, 90, 90, 90, 90, 90, 90, 90, 89]
+        }
+      },
+      "confusion_matrix": {
+        "(0, 0)": [34, 28, 30, 35, 34, 29, 30, 30, 18, 18],
+        "(0, 1)": [7, 13, 11, 6, 6, 11, 10, 10, 22, 22],
+        "(1, 0)": [9, 8, 9, 6, 11, 7, 6, 6, 9, 7],
+        "(1, 1)": [40, 41, 40, 43, 39, 43, 44, 44, 41, 42]
+      }
+    },
+    {
+      "scaler": "MinMaxScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "X_shape": [899, 43],
+      "one_hot_encoded_features": ["cp", "restecg", "slope", "ca", "restwm"],
+      "parameters": {
+        "estimator__alpha": [
+          0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5,
+          7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5,
+          13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0,
+          18.5, 19.0, 19.5
+        ],
+        "estimator__norm": [true, false],
+        "impute__strategy": ["mean", "median", "most_frequent"],
+        "drop_columns__minimum_percentage_to_be_dropped": [
+          0, 4, 8, 20, 35, 60, 75, 100
+        ],
+        "oneHotEncoder__discretize": [
+          "passthrough",
+          {
+            "dtype": null,
+            "encode": "ordinal",
+            "n_bins": 2,
+            "random_state": null,
+            "strategy": "uniform",
+            "subsample": "warn"
+          },
+          {
+            "dtype": null,
+            "encode": "ordinal",
+            "n_bins": 5,
+            "random_state": null,
+            "strategy": "uniform",
+            "subsample": "warn"
+          }
+        ]
+      },
+      "auc_mean": 76.41694873071178,
+      "execution_time_in_seconds": 1926.1990175247192,
+      "best_params": {
+        "drop_columns__minimum_percentage_to_be_dropped": 100,
+        "estimator__alpha": 19.5,
+        "estimator__norm": true,
+        "impute__strategy": "mean",
+        "oneHotEncoder__discretize": {
+          "dtype": null,
+          "encode": "ordinal",
+          "n_bins": 2,
+          "random_state": null,
+          "strategy": "uniform",
+          "subsample": "warn"
+        }
+      },
+      "auc": [
+        0.7757590841214534, 0.7677949228471876, 0.7127924340467895,
+        0.7921851667496267, 0.8425, 0.8075, 0.82, 0.815, 0.65,
+        0.6581632653061225
+      ],
+      "classification_report": {
+        "0": {
+          "precision": [
+            0.6923076923076923, 0.7272727272727273, 0.6666666666666666,
+            0.7391304347826086, 0.7551020408163265, 0.7948717948717948, 0.8,
+            0.7555555555555555, 0.6666666666666666, 0.6896551724137931
+          ],
+          "recall": [
+            0.8780487804878049, 0.7804878048780488, 0.7317073170731707,
+            0.8292682926829268, 0.925, 0.775, 0.8, 0.85, 0.5, 0.5
+          ],
+          "f1-score": [
+            0.7741935483870966, 0.7529411764705882, 0.6976744186046511,
+            0.7816091954022988, 0.8314606741573034, 0.7848101265822786,
+            0.8000000000000002, 0.7999999999999998, 0.5714285714285715,
+            0.5797101449275363
+          ],
+          "support": [41, 41, 41, 41, 40, 40, 40, 40, 40, 40]
+        },
+        "1": {
+          "precision": [
+            0.868421052631579, 0.8043478260869565, 0.7555555555555555,
+            0.8409090909090909, 0.926829268292683, 0.8235294117647058, 0.84,
+            0.8666666666666667, 0.6666666666666666, 0.6666666666666666
+          ],
+          "recall": [
+            0.673469387755102, 0.7551020408163265, 0.6938775510204082,
+            0.7551020408163265, 0.76, 0.84, 0.84, 0.78, 0.8, 0.8163265306122449
+          ],
+          "f1-score": [
+            0.7586206896551724, 0.7789473684210526, 0.723404255319149,
+            0.7956989247311828, 0.8351648351648352, 0.8316831683168315,
+            0.8399999999999999, 0.8210526315789474, 0.7272727272727272,
+            0.7339449541284403
+          ],
+          "support": [49, 49, 49, 49, 50, 50, 50, 50, 50, 49]
+        },
+        "accuracy": [
+          0.7666666666666667, 0.7666666666666667, 0.7111111111111111,
+          0.7888888888888889, 0.8333333333333334, 0.8111111111111111,
+          0.8222222222222222, 0.8111111111111111, 0.6666666666666666,
+          0.6741573033707865
+        ],
+        "macro avg": {
+          "precision": [
+            0.7803643724696356, 0.7658102766798419, 0.711111111111111,
+            0.7900197628458498, 0.8409656545545048, 0.8092006033182504,
+            0.8200000000000001, 0.8111111111111111, 0.6666666666666666,
+            0.6781609195402298
+          ],
+          "recall": [
+            0.7757590841214534, 0.7677949228471876, 0.7127924340467895,
+            0.7921851667496267, 0.8425, 0.8075, 0.8200000000000001, 0.815, 0.65,
+            0.6581632653061225
+          ],
+          "f1-score": [
+            0.7664071190211346, 0.7659442724458204, 0.7105393369619,
+            0.7886540600667408, 0.8333127546610692, 0.8082466474495551,
+            0.8200000000000001, 0.8105263157894735, 0.6493506493506493,
+            0.6568275495279883
+          ],
+          "support": [90, 90, 90, 90, 90, 90, 90, 90, 90, 89]
+        },
+        "weighted avg": {
+          "precision": [
+            0.788191632928475, 0.769235836627141, 0.7150617283950618,
+            0.7945432586736934, 0.850506056080969, 0.8107926931456343,
+            0.8222222222222222, 0.817283950617284, 0.6666666666666666,
+            0.6769985793620044
+          ],
+          "recall": [
+            0.7666666666666667, 0.7666666666666667, 0.7111111111111111,
+            0.7888888888888889, 0.8333333333333334, 0.8111111111111111,
+            0.8222222222222222, 0.8111111111111111, 0.6666666666666666,
+            0.6741573033707865
+          ],
+          "f1-score": [
+            0.7657149919663823, 0.7671001031991744, 0.7116828852603222,
+            0.7892802702591357, 0.83351854138371, 0.8108507053236969,
+            0.8222222222222222, 0.8116959064327486, 0.658008658008658,
+            0.6646259387572475
+          ],
+          "support": [90, 90, 90, 90, 90, 90, 90, 90, 90, 89]
+        }
+      },
+      "confusion_matrix": {
+        "(0, 0)": [36, 32, 30, 34, 37, 31, 32, 34, 20, 20],
+        "(0, 1)": [5, 9, 11, 7, 3, 9, 8, 6, 20, 20],
+        "(1, 0)": [16, 12, 15, 12, 12, 8, 8, 11, 10, 9],
+        "(1, 1)": [33, 37, 34, 37, 38, 42, 42, 39, 40, 40]
+      }
+    },
+    {
+      "scaler": "MinMaxScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "X_shape": [899, 43],
+      "one_hot_encoded_features": ["cp", "restecg", "slope", "ca", "restwm"],
+      "parameters": {
+        "estimator__alpha": [
+          0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5,
+          7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5,
+          13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0,
+          18.5, 19.0, 19.5
+        ],
+        "estimator__norm": [true, false],
+        "impute__strategy": ["mean", "median", "most_frequent"],
+        "drop_columns__minimum_percentage_to_be_dropped": [
+          0, 4, 8, 20, 35, 60, 75, 100
+        ],
+        "oneHotEncoder__discretize": [
+          "passthrough",
+          {
+            "dtype": null,
+            "encode": "ordinal",
+            "n_bins": 2,
+            "random_state": null,
+            "strategy": "uniform",
+            "subsample": "warn"
+          },
+          {
+            "dtype": null,
+            "encode": "ordinal",
+            "n_bins": 5,
+            "random_state": null,
+            "strategy": "uniform",
+            "subsample": "warn"
+          }
+        ]
+      },
+      "auc_mean": 76.53889995022399,
+      "execution_time_in_seconds": 1883.7535049915314,
+      "best_params": {
+        "drop_columns__minimum_percentage_to_be_dropped": 100,
+        "estimator__alpha": 18.0,
+        "estimator__norm": true,
+        "impute__strategy": "mean",
+        "oneHotEncoder__discretize": {
+          "dtype": null,
+          "encode": "ordinal",
+          "n_bins": 2,
+          "random_state": null,
+          "strategy": "uniform",
+          "subsample": "warn"
+        }
+      },
+      "auc": [
+        0.7757590841214534, 0.7799900447984072, 0.7127924340467895,
+        0.7921851667496267, 0.8175, 0.8075, 0.8324999999999999, 0.815, 0.65,
+        0.6706632653061224
+      ],
+      "classification_report": {
+        "0": {
+          "precision": [
+            0.6923076923076923, 0.7333333333333333, 0.6666666666666666,
+            0.7391304347826086, 0.7446808510638298, 0.7948717948717948,
+            0.8048780487804879, 0.7555555555555555, 0.6666666666666666, 0.7
+          ],
+          "recall": [
+            0.8780487804878049, 0.8048780487804879, 0.7317073170731707,
+            0.8292682926829268, 0.875, 0.775, 0.825, 0.85, 0.5, 0.525
+          ],
+          "f1-score": [
+            0.7741935483870966, 0.7674418604651163, 0.6976744186046511,
+            0.7816091954022988, 0.8045977011494252, 0.7848101265822786,
+            0.8148148148148149, 0.7999999999999998, 0.5714285714285715, 0.6
+          ],
+          "support": [41, 41, 41, 41, 40, 40, 40, 40, 40, 40]
+        },
+        "1": {
+          "precision": [
+            0.868421052631579, 0.8222222222222222, 0.7555555555555555,
+            0.8409090909090909, 0.8837209302325582, 0.8235294117647058,
+            0.8571428571428571, 0.8666666666666667, 0.6666666666666666,
+            0.6779661016949152
+          ],
+          "recall": [
+            0.673469387755102, 0.7551020408163265, 0.6938775510204082,
+            0.7551020408163265, 0.76, 0.84, 0.84, 0.78, 0.8, 0.8163265306122449
+          ],
+          "f1-score": [
+            0.7586206896551724, 0.7872340425531914, 0.723404255319149,
+            0.7956989247311828, 0.8172043010752689, 0.8316831683168315,
+            0.8484848484848485, 0.8210526315789474, 0.7272727272727272,
+            0.7407407407407407
+          ],
+          "support": [49, 49, 49, 49, 50, 50, 50, 50, 50, 49]
+        },
+        "accuracy": [
+          0.7666666666666667, 0.7777777777777778, 0.7111111111111111,
+          0.7888888888888889, 0.8111111111111111, 0.8111111111111111,
+          0.8333333333333334, 0.8111111111111111, 0.6666666666666666,
+          0.6853932584269663
+        ],
+        "macro avg": {
+          "precision": [
+            0.7803643724696356, 0.7777777777777777, 0.711111111111111,
+            0.7900197628458498, 0.8142008906481939, 0.8092006033182504,
+            0.8310104529616724, 0.8111111111111111, 0.6666666666666666,
+            0.6889830508474576
+          ],
+          "recall": [
+            0.7757590841214534, 0.7799900447984072, 0.7127924340467895,
+            0.7921851667496267, 0.8175, 0.8075, 0.8325, 0.815, 0.65,
+            0.6706632653061224
+          ],
+          "f1-score": [
+            0.7664071190211346, 0.7773379515091539, 0.7105393369619,
+            0.7886540600667408, 0.810901001112347, 0.8082466474495551,
+            0.8316498316498318, 0.8105263157894735, 0.6493506493506493,
+            0.6703703703703703
+          ],
+          "support": [90, 90, 90, 90, 90, 90, 90, 90, 90, 89]
+        },
+        "weighted avg": {
+          "precision": [
+            0.788191632928475, 0.7817283950617284, 0.7150617283950618,
+            0.7945432586736934, 0.8219253394909012, 0.8107926931456343,
+            0.8339140534262485, 0.817283950617284, 0.6666666666666666,
+            0.68786897733765
+          ],
+          "recall": [
+            0.7666666666666667, 0.7777777777777778, 0.7111111111111111,
+            0.7888888888888889, 0.8111111111111111, 0.8111111111111111,
+            0.8333333333333334, 0.8111111111111111, 0.6666666666666666,
+            0.6853932584269663
+          ],
+          "f1-score": [
+            0.7657149919663823, 0.7782176040464017, 0.7116828852603222,
+            0.7892802702591357, 0.8116013677748939, 0.8108507053236969,
+            0.8335203890759446, 0.8116959064327486, 0.658008658008658,
+            0.6774864752392843
+          ],
+          "support": [90, 90, 90, 90, 90, 90, 90, 90, 90, 89]
+        }
+      },
+      "confusion_matrix": {
+        "(0, 0)": [36, 33, 30, 34, 35, 31, 33, 34, 20, 21],
+        "(0, 1)": [5, 8, 11, 7, 5, 9, 7, 6, 20, 19],
+        "(1, 0)": [16, 12, 15, 12, 12, 8, 8, 11, 10, 9],
+        "(1, 1)": [33, 37, 34, 37, 38, 42, 42, 39, 40, 40]
+      }
+    },
+    {
+      "scaler": "Normalizer",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "Normalizer",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "Normalizer",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "PowerTransformer",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "PowerTransformer",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "PowerTransformer",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "RobustScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "RobustScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "RobustScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "StandardScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "StandardScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "StandardScaler",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "str",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "str",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "str",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomOverSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    },
+    {
+      "scaler": "str",
+      "estimator": "ComplementNB",
+      "imputer": "SimpleImputer",
+      "sampler": "RandomUnderSampler",
+      "reason": "Negative values in data passed to ComplementNB (input X)"
+    }
+  ]
+}
