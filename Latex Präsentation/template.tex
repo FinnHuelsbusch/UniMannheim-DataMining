@@ -24,6 +24,7 @@
 	aspectratio=169, % Uncomment to set the aspect ratio to a 16:9 ratio which matches the aspect ratio of 1080p and 4K screens and projectors
 ]{beamer}
 
+\setbeameroption{show notes}
 \graphicspath{{Images/}{./}} % Specifies where to look for included images (trailing slash required)
 
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
@@ -260,9 +261,93 @@
 
 %------------------------------------------------
 
+\begin{frame}
+	\frametitle{Data understanding}
+	\framesubtitle{Dropped Features}
+	\begin{itemize}
+		\item IDs 
+		\item Dates 
+		\item names 
+		\item Constants 
+		\item Irrelevant columns according to UCI 
+		\item Unspecified columns 
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Data Preprocessing}
+	\begin{itemize}
+		\item 4 dataset -> different encodings -> harmonise
+		\item Validity tests
+		\item Check for inconsistencies
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
 \subsection{Data understanding}
 
 \begin{frame}
+	\frametitle{Data understanding}
+	\framesubtitle{false predictors}
+	\begin{figure}
+		\includegraphics[width=0.55\linewidth]{XGBoost AUC.pdf}
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------
+
+
+
+\begin{frame}
+	\frametitle{Data understanding}
+	\framesubtitle{false predictors}
+	\begin{figure}
+		\includegraphics[width=0.55\linewidth]{Xgboost Feature Importance.pdf}
+	\end{figure}
+\end{frame}
+
+
+
+\subsection{Columns}
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Data understanding}
+	\framesubtitle{Dropped Features}
+	\begin{itemize}
+		\item IDs 
+		\item Dates 
+		\item names 
+		\item Constants 
+		\item Irrelevant columns according to UCI 
+		\item Unspecified columns
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Data understanding}
+	\framesubtitle{Dropped Features}
+	\begin{itemize}
+		\item IDs 
+		\item Dates 
+		\item names 
+		\item Constants 
+		\item Irrelevant columns according to UCI 
+		\item Unspecified columns
+		\item Coronary arteries 
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{Data understanding}
+
+\begin{frame} 
 	\frametitle{Data understanding}
 	\framesubtitle{Missing Features}
 	\begin{figure}
@@ -273,7 +358,7 @@
 
 %------------------------------------------------
 
-\subsection{Data understanding}
+
 
 \begin{frame}[<+->]
 	\frametitle{Data understanding}
@@ -285,8 +370,6 @@
 \end{frame}
 
 %------------------------------------------------
-
-\subsection{Columns}
 
 \begin{frame}
 	\frametitle{Multiple Columns}
