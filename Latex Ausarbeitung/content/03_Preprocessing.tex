@@ -48,7 +48,7 @@ Firstly, we try binning the feature \emph{age}. We choose either 2 or 5 bins or 
 	\label{fig:percentageToBeDropped}
 \end{figure}
 
- \Cref{fig:percentageToBeDropped} shows the number of features, that have less than a certain number of missing data and how many cells we would need to impute if we included these features. It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, we try the steps 0, 4, 8, 20, 35, 60, 75 and 100 \% in the model. They are shown as vertical lines in the graph. \todo{Insert steps} Additionally, we decided to drop features based on their correlation. For this we decided to use the steps [X,X,X,X].
+ \Cref{fig:percentageToBeDropped} shows the number of features, that have less than a certain number of missing data and how many cells we would need to impute if we included these features. It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, we try the steps 0, 4, 8, 20, 35, 60, 75 and 100 \% in the model. They are shown as vertical lines in the graph. 
 
 To impute the missing data we use a simple imputer. Missing values are replaced by the mean, median or mode of the feature. We decided against using a KNN imputer, because it is computationally much more expensive. The iterative imputer is not used, as it is still experimental and therefore subject to change.
 
