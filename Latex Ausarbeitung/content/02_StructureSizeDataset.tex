@@ -3,12 +3,12 @@
 
 % minimum 1 page
 
-According to the CRISP-DM reference model, Data Understanding begins with the initial data collection. For our problem, we use a Heart Disease Data from 1988, consisting of 77 attributes and 899 instances resulting in 69.223 observations. To create our customized dataset we combined multiple datasets collected in Budapest, Zurich, Basel and Cleveland as seen in \cref{table:datasets}. This dataset was made available by the University of California, Irvine (UCI) Machine Learning Repository under the Creative Commons Attribution 4.0 International License \citep{janosi1988}. Despite the age of the dataset, it is still suitable for analysis due to the comprehensive and detailed data collection. 
+According to the CRISP-DM reference model\todo{reference to explanation of model}, Data Understanding begins with the initial data collection. For our problem, we use a Heart Disease dataset from 1988, consisting of 77 attributes and 899 instances resulting in 69.223 observations. To create our customized dataset we combined multiple datasets collected in Budapest, Zurich, Basel and Cleveland as seen in \cref{table:datasets}. This dataset was made available by the University of California, Irvine (UCI) Machine Learning Repository under the Creative Commons Attribution 4.0 International License \citep{janosi1988}. Despite the age of the dataset, it is still suitable for analysis due to the comprehensive and detailed data collection. \todo{add the following sentence??: Furthermore, there won't be systematic change in the medical parameters since the creation of the dataset, as the age of the data is negligible from an evolutionary standpoint.}
 
 % PLACEHOLDER TABLE
 \begin{table}[] 
 \begin{tabular}{l|l|l|l|l} 
-Index & \multicolumn{1}{c}{Publisher of data set}                          & \multicolumn{1}{c}{\# of instances} & \multicolumn{1}{c}{Distribution of the target variable (heart disease/no heart disease)} &  \\
+Index & \multicolumn{1}{c}{Publisher of dataset}                          & \multicolumn{1}{c}{\# of instances} & \multicolumn{1}{c}{Distribution of the target variable (heart disease/no heart disease)} &  \\
 1     & Hungarian Institute of Cardiology. Budapest: Andras Janosi, M.D.   & 294                                 & 106 / 188                                                                                &  \\
 2     & University Hospital, Zurich, Switzerland: William Steinbrunn, M.D. & 123                                 & 115 / 8                                                                                  &  \\
 3     & V.A. Medical Center, Long Beach                                    & 200                                 & 149 / 51                                                                                 &  \\
@@ -17,20 +17,26 @@ Index & \multicolumn{1}{c}{Publisher of data set}                          & \mu
 \caption{Content of the dataset} 
 \label{table:datasets}
 \end{table}
-% Komischer screenshot mit einzelnen Datensätzen
+% Komischer screenshot mit einzelnen Datensätzen 
 \todo{Fit table to width}
 
 After the creation of the dataset, we perform initial analysis of the dataset. The attributes are highly diverse and oftentimes describe specific medical information. Common attributes include age, sex or patient ID (id), whereas medically specific attributes focus on information like type of chest pain (cp). An overview of all attributes is provided in our code documentation as well as the UCI Machine Learning Repository. 
 
+\todo{absatz über gruppen von features schreiben; das hatten die extra nochmal betont in der letzten Fragestunde, also gerne auch ein etwas ausführlicherer Absatz}
+
+\todo{am besten nochmal umschreiben. Ich würde nur beschreiben wie wir vorgegangen sind, nicht dass uns das knowledge fehlt. Finde der Absatz klingt eher nach Nacherzählung}
 These medical-specific attributes have presented us with challenges. Although the attributes are listed in the information provided by UCI, the explanations are very brief or non-existent.Thus, it became clear our team lacked specialized knowledge to interpret attributes such as type of chest pain (cp) or resting electrocardiographic results (restecg). Therefore, we researched the different attributes in order to understand their meaning on the one hand and to be able to interpret their values better on the other hand. This research served as a foundation for assembling the data frame for our model in the Data Preparation. 
 
-Our target variable is resembled by the attribute num and encoded binary, with the value 1 indicating the diagnosis of a heart disease and the value 0 contradicting that indication. Looking at the distribution of the target variable we observe strongly varying distributions for the different datasets as specified in Table 1. The distribution in the combined dataset is relatively equal with 495 positive and 404 negative measurements, meaning a disease prevalence of roughly 55,1\%. When examining distribution of the other attributes we also notice uneven distributions. For example, the attribute sex´s distribution contains 78\% male and 22\% female patients in our data set, contributing to the Gender Data Gap prevalent in medicine. We also notice further uneven distributions across our datasets. Whilst highlighting them in the report would exceed the frame, we address these deviations in the preprocessing of our dataset and documented them.  
+Our target variable is resembled by the attribute num and encoded binary, with the value 1 indicating the diagnosis of a heart disease and the value 0 contradicting that indication. Looking at the distribution of the target variable we observe strongly varying distributions for the different datasets as specified in Table 1. The distribution in the combined dataset is relatively equal with 495 positive and 404 negative measurements, meaning a disease prevalence of roughly 55,1\%. When examining distribution of the other attributes we also notice uneven distributions. For example, the attribute sex´s distribution contains 78\% male and 22\% female patients in our dataset, contributing to the Gender Data Gap prevalent in medicine. We also notice further uneven distributions across our datasets. Whilst highlighting them in the report would exceed the frame, we address these deviations in the preprocessing of our dataset and documented them.  
 
-It should also be noted that the data set is not sorted or aligned to a time series and therefore not suitable for a time series analysis. 
+\todo{auch noch bissl anders formulieren. Wir haben ja schon Daten drin. Nur gibt es pro patient pro messung nur einen Eintrag; das ist eher das Problem}
+It should also be noted that the dataset is not sorted or aligned to a time series and therefore not suitable for a time series analysis. 
 
-Lastly, verifying data quality also acts as an important part of Data Understanding. When checking for missing data we observed multiple interesting results. We observe a generally high number of cells with missing values, lacking 21397 or 30,8\% of values. Some individual attributes in particular have many missing values like history of diabetes (dm) with roughly 90\% missing values. These missing values are sometimes dataset-specific (e.g. painloc is mainly missing in the Cleveland dataset) but also cross-dataset (e.g. dm). 
+Lastly, verifying data quality also acts as an important part of Data Understanding. When checking for missing data we observed multiple interesting results. We observe a high number of cells with missing values, lacking 21397 or 30,8\% of values. Some individual attributes in particular have many missing values like history of diabetes (dm) with roughly 90\% missing values. These missing values are sometimes dataset-specific (e.g. painloc is mainly missing in the Cleveland dataset) but also cross-dataset (e.g. dm). 
 
 Furthermore, when checking whether meanings of attributes and their contained values fit together, we observe some irregularities. For example, looking at the attribute cholesterin (chol), the values listed seem to be unrealistic (e.g. many instances with 0 serum cholesterol in mg/dl). 
 
 After obtaining an understanding of properties and meaning of our data, we perform initial analysis to explore additional inisights of our dataset 
+
+\todo{alle wörtlich genannten attribute (z.B. restecg; nicht resting electrocardiographic results) kursiv schreiben: \emph{restecg} }
 
