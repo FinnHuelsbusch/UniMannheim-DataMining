@@ -1,0 +1,19 @@
+
+%\newpage
+\section{Results} \label{sec:results}
+
+In order to be able to critically assess our result with the Decision Tree being the best model, a comparison with existing evaluations is advisable. Therefore, we conducted a search for papers, articles and competitions working with the dataset which describe their approach well. We observe most of the literature findings obtain much higher accuracy \citep{alotaibi2019, garate-escamila2020, uyar2017} and overall perform well better not only than our preferred model but also than our other models as seen in \cref{table:datasets}. For example, \citet{garate-escamila2020} was able to achieve accuracies of up to 99,4\% with Random Forest, aforehand selecting features by chi-square and using PCA.  
+
+However, two differences in our analysis make comparison with other work difficult. On the one hand, due to the fact that plenty of research using the 13 preselected features provided by UCI already exists, we didn´t limit our features and instead used the entire dataset. On the other hand, our predictions are based on the combination of the four datasets from UCI. Many other papers use only one of the four datasets at a time, oftentimes 'Cleveland', as it has the best data quality. Combining these factors, it explains that other research surpasses our findings, as they followed other approaches and different criterions. For our approach, we could not find any comparable papers in our literature search. 
+
+Analyzing our result against the majority class baseline (55,1\% accuracy), we achieve significantly increased accuracy not only for the KNN but also all our other models. Combined with only 70 Type 2 errors this indicates that our model performs well over the baseline. 
+
+To conclude whether or not our project helps doctors on diagnosing possible heart diseases more easily, we need to take certain limitations into account. Type 2 errors in disease prediction are particularly problematic because a sick patient is mistakenly found to be healthy. Contrary to the Type 1 error, in which a healthy patient is found to be ill, the diagnosis of the model is especially serious because no further treatment of the patient takes place.  
+
+When considering the actual application of the model in practice, it is important to overcome the "black box" of machine learning for users. For this, explainable AI (XAI) models like the Decision Tree help to be interpretable and trustworthy even for laymen (see \cref{fig:DecisionTree}). Therefore, our Decision Tree could serve as a valuable addition for application in real-world problems, esp. in interaction with humans, since it allows them to understand the decision of the model. In addition, the accuracy of our model, at just under 80\%, is ultimately too low to make a reliable diagnosis. Considering all these limitations, we conclude that our model cannot replace a physician, but it can complement the physician's diagnosis in a quality-assuring way. 
+
+
+
+\todo{Eric hat im business understanding einen schönen Satz geschrieben: "By doing this analysis patients flagged for potential heart disease could possibly be prioritised" den würde ich so ähnlich oder darauf bezug nehmend hier auch nochmal schreiben
+Timo: --> sehe ich, finde aber, dass das nochmal nen neuen Punkt hinsichtlich des med. Nutzens unserer Arbeit aufmacht und der Abschluss hier schon sehr rund ist.}
+
