@@ -6,16 +6,28 @@
 According to the CRISP-DM reference model\todo{reference to explanation of model}, Data Understanding begins with the initial data collection. For our problem, we use a Heart Disease dataset from 1988, consisting of 77 attributes and 899 instances resulting in 69.223 observations. To create our customized dataset we combined multiple datasets collected in Budapest, Zurich, Basel and Cleveland as seen in \cref{table:datasets}. This dataset was made available by the University of California, Irvine (UCI) Machine Learning Repository under the Creative Commons Attribution 4.0 International License \citep{janosi1988}. Despite the age of the dataset, it is still suitable for analysis due to the comprehensive and detailed data collection. \todo{add the following sentence??: Furthermore, there won't be systematic change in the medical parameters since the creation of the dataset, as the age of the data is negligible from an evolutionary standpoint.}
 
 % PLACEHOLDER TABLE
-\begin{table}[] 
-\begin{tabular}{l|l|l|l|l} 
-Index & \multicolumn{1}{c}{Publisher of dataset}                          & \multicolumn{1}{c}{\# of instances} & \multicolumn{1}{c}{Distribution of the target variable (heart disease/no heart disease)} &  \\
-1     & Hungarian Institute of Cardiology. Budapest: Andras Janosi, M.D.   & 294                                 & 106 / 188                                                                                &  \\
-2     & University Hospital, Zurich, Switzerland: William Steinbrunn, M.D. & 123                                 & 115 / 8                                                                                  &  \\
-3     & V.A. Medical Center, Long Beach                                    & 200                                 & 149 / 51                                                                                 &  \\
-4     & Cleveland Clinic Foundation: Robert Detrano, M.D., Ph.D.           & 282                                 & 125 / 157                                                                                & 
+\begin{table}[]
+\begin{adjustwidth}{-2cm}{}
+\begin{footnotesize}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Index} & \multicolumn{1}{c|}{\textbf{Publisher of data set}}                & \multicolumn{1}{c|}{\textbf{\# of instances}} & \multicolumn{1}{c|}{\textbf{Distribution target variable}} \\ \hline
+1              & Hungarian Institute of Cardiology. Budapest: Andras Janosi, M.D.   & 294                                           & 106 / 188                                                                                          \\ \hline
+2              & University Hospital, Zurich, Switzerland: William Steinbrunn, M.D. & 123                                           & 115 / 8                                                                                            \\ \hline
+3              & V.A. Medical Center, Long Beach                                    & 200                                           & 149 / 51                                                                                           \\ \hline
+4              & Cleveland Clinic Foundation: Robert Detrano, M.D., Ph.D.           & 282                                           & 125 / 157                                                                                          \\ \hline
 \end{tabular}
+\begin{adjustwidth}{+2cm}{}
+\begin{center}
+\centering
+Distribution = heart disease / no heart disease
+\end{center}
+\end{adjustwidth}
+
 \caption{Content of the dataset} 
 \label{table:datasets}
+\end{footnotesize}
+\end{adjustwidth}
 \end{table}
 % Komischer screenshot mit einzelnen Datensätzen 
 \todo{Fit table to width}
