@@ -1,12 +1,12 @@
 %\newpage
 \section{Datamining} \label{sec:datamining}
-The first step in the process of data mining is to decide for a fitting algorithmm. Because the best algorithm is not known in advance multiple are tested. For this project this were: K nearest Neighbors, Random Forest, Decision Tree, Support vector machine, logistic regression, XGBoost, and four naïve bayes classifiers based on Bernoulli, complement, gaussian  and multinomial.
+The first step in the process of data mining is to decide for a fitting algorithmm. Because the best algorithm is not known in advance multiple are tested. For this project this were: KNNeighbors, Random Forest, Decision Tree, SVC, logistic regression, XGBoost, and four naïve bayes classifiers based on bernoulli, complement, gaussian  and multinomial.
 
-These ten classification algorithms will be evaluated to determine which one yields the best results. The quality of an algorithm is determined by two properties. The first criterion is a high recall, in order to avoid possible Type 2 errors (a patient with a heart disease is diagnosed as negative) in the diagnosis. The second criterion is the number of examinations required. The reason for this is that we want our model to be universally used by doctors. We assume that this is especially the case when even simple examinations yield a good diagnosis. This criterion also corresponds to Occam’s razor.
+These ten classification algorithms will be evaluated to determine which one yields the best results. The quality of an algorithm is determined by two properties. The first criterion is a high recall, in order to avoid possible Type 2 errors (a patient with a heart disease is diagnosed as negative) in the diagnosis. The second criterion is the number of examinations required. The reason for this is that we want our model to be universally used by doctors. We assume that this is especially the case when even simple examinations yield a good diagnosis. This criterion also corresponds to Occam’s Razor.
 
-Besides the before mentioned use of scalers, imputers and samplers we additionally apply a variety of classifier specific hyperparameters. For the KNN we added the number of used Neighbors from 2 to 97 moving in 5-unit steps as well as the distance metric L1 and L2 as hyperparameters. Random Forest was tested with 10 to 90 (10-unit steps) estimators and a maximum depth of None, 2, 6 and 10 and a minimum split of 2, 6, and 10. Decisions Trees were tested with both the gini index and entropy as impurity measures while the values for maximum tree depth and minimum split were the same as for Random Forest. In the case of logistic regression, we added the same distance options as for KNN. For SVC we tested C values ranging from 120 to 160 (20-unit steps), in combination with the gamma values 0.0001, 0.001, 0.01 and the kernel options linear, polynomial, sigmoidal and radial basis function. For the four naïve bayes estimators we applied alpha values from 0 to 19.5 (0.5-unit steps).
+Besides the before mentioned use of scalers, imputers and samplers we additionally apply a variety of classifier specific hyperparameters. For the KNN we added the number of used neighbors from 2 to 97 moving in 5-unit steps as well as the distance metric L1 and L2 as hyperparameters. Random Forest was tested with 10 to 90 (10-unit steps) estimators and a maximum depth of None, 2, 6 and 10 and a minimum split of 2, 6, and 10. Decisions Trees were tested with both the gini index and entropy as impurity measures while the values for maximum tree depth and minimum split were the same as for Random Forest. In the case of logistic regression, we added the same distance options as for KNN. For SVC we tested C values ranging from 120 to 160 (20-unit steps), in combination with the gamma values 0.0001, 0.001, 0.01 and the kernel options linear, polynomial, sigmoidal and radial basis function. For the four naïve bayes estimators we applied alpha values from 0 to 19.5 (0.5-unit steps).
 
-In order to find the best model a stratified nested cross validation was conducted while using two 10-folds. To later decide which model was the best one a classification report for every outer loop of the cv was saved. To run all cvs the work was split into several small parts where every unique combination of estiamtor, scaler and imputer represents its own part that was run on its own. This leads to 210 seperateseperate cross validations. In the following evaluation only the best cv according to the previously defined criterions (high recall and simplicity) are reviewed in greater detail. For measuring the simplicity the minimum percentage to be dropped was used as a metric. If models performed equally we followed Occams Razor and favoured models with a low number of columns and basic preprocessing. The results for every model can be seen in \cref{table:modelresults} in addition to some further prediction metrics without any ordering.
+In order to find the best model a stratified nested cross validation was conducted while using two 10-folds. To later decide which model was the best one a classification report for every outer loop of the CV was saved. To run all CVs the work was split into several small parts where every unique combination of estiamtor, scaler and imputer represents its own part that was run on its own. This leads to 210 seperateseperate cross validations. In the following evaluation only the best CV according to the previously defined criterions (high recall and simplicity) are reviewed in greater detail. For measuring the simplicity the minimum percentage to be dropped was used as a metric. If models performed equally we followed Occam's Razor and favoured models with a low number of columns and basic preprocessing. The results for every model can be seen in \cref{table:modelresults} in addition to some further prediction metrics without any ordering.
 
 
 % INSERT TABLE
@@ -18,17 +18,17 @@ In order to find the best model a stratified nested cross validation was conduct
 		\begin{tabular}{|l|l|l|l|l|l|l|l|}
 			\hline
 			\textbf{Classifier} & \textbf{Scaler}  & \textbf{Sampler} & \textbf{Rec.} & \textbf{Rec. Std.} & \textbf{AUC.} & \textbf{F1} & \textbf{MPD} \\ \hline
-			Baseline            & none             & none             & 1             & 0                  & 50,00         & 0.71        & 0            \\ \hline
-			KNN                 & none             & none             & 0.85          & 0.04               & 76.28         & 0.80        & 0            \\ \hline
-			XGB                 & Normalizer       & RUS              & 0.77          & 0.09               & 76.54         & 0.78        & 75           \\ \hline
-			Random Forest       & StandardScaler   & none             & 0.84          & 0.09               & 78.40         & 0.81        & 100          \\ \hline
-			Decision Tree       & none             & none             & 0.85          & 0.06               & 76.70         & 0.80        & 0            \\ \hline
-			SVC                 & PowerTransformer & none             & 0.81          & 0.11               & 77.87         & 0.80        & 20           \\ \hline
-			NB (bernoulli)      & StandardScaler   & none             & 0.79          & 0.08               & 76.23         & 0.79        & 8            \\ \hline
-			NB (complement)     & MinMaxScaler     & none             & 0.84          & 0.03               & 77.48         & 0.81        & 100          \\ \hline
-			NB (gaussian)       & Normalizer       & none             & 0.52          & 0.12               & 70.45         & 0.64        & 20           \\ \hline
-			NB (multinomial)    & MinMaxScaler     & none             & 0.79          & 0.06               & 76.46         & 0.79        & 100          \\ \hline
-			logistic regression & Normalizer       & none             & 0.84          & 0.07               & 76.02         & 0.80        & 0            \\ \hline
+			Baseline            & none             & none             & 1             & 0                  & 0.50         & 0.71        & 0            \\ \hline
+			KNN                 & none             & none             & 0.85          & 0.04               & 0.76         & 0.80        & 0            \\ \hline
+			XGB                 & Normalizer       & RUS              & 0.77          & 0.09               & 0.76         & 0.78        & 75           \\ \hline
+			Random Forest       & StandardScaler   & none             & 0.84          & 0.09               & 0.78         & 0.81        & 100          \\ \hline
+			Decision Tree       & none             & none             & 0.85          & 0.06               & 0.76         & 0.80        & 0            \\ \hline
+			SVC                 & PowerTransformer & none             & 0.81          & 0.11               & 0.77         & 0.80        & 20           \\ \hline
+			NB (bernoulli)      & StandardScaler   & none             & 0.79          & 0.08               & 0.76         & 0.79        & 8            \\ \hline
+			NB (complement)     & MinMaxScaler     & none             & 0.84          & 0.03               & 0.77         & 0.81        & 100          \\ \hline
+			NB (gaussian)       & Normalizer       & none             & 0.52          & 0.12               & 0.70         & 0.64        & 20           \\ \hline
+			NB (multinomial)    & MinMaxScaler     & none             & 0.79          & 0.06               & 0.76         & 0.79        & 100          \\ \hline
+			logistic regression & Normalizer       & none             & 0.84          & 0.07               & 0.76         & 0.80        & 0            \\ \hline
 		\end{tabular}
 
 		% \begin{adjustwidth}{+3cm}{}
@@ -57,7 +57,7 @@ In order to view what our best model believes to be important indicators we have
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{images/DecisionTree.png}
+	\includegraphics[width=0.7\textwidth]{images/DecisionTree.png}
 	\caption{Decision tree visualized}
 	\label{fig:DecisionTree}
 \end{figure}
