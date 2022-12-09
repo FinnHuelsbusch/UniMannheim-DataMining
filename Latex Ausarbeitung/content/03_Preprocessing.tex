@@ -10,9 +10,9 @@ Preprocessing was approached in two steps. In the first step the dataset was pre
 Secondly, the data was transformed with the help of various algorithms that are combined in a pipeline. 
 
 \subsection{Data Preparation}
-In the first step a custom loading function was implemented to put the four data sets into a usable format and harmonize known differences in encodings. In this step, the missing values marked \texttt{$-9$} were replaced by \texttt{NaN} and the target variable was binarised by replacing all values greater than 1 by 1, as the UCI does not describe how the different positive cases (\textit{num} $\geq 1$) differ.
+In the first step a custom loading function was implemented to put the four datasets into a usable format and harmonize known differences in encodings. In this step, the missing values marked \texttt{$-9$} were replaced by \texttt{NaN} and the target variable was binarised by replacing all values greater than 1 by 1, as the UCI does not describe how the different positive cases (\textit{num} $\geq 1$) differ.
 
-After that irrelevant columns such as IDs, dates, constants, undescribed columns as well as irrelevant columns according to the UCI were removed. All of these columns are either not causally related to the presence of heart disease or cannot be examined for new patients because it is unknown what they measure. The feature \textit{pncaden} was also dropped because it is the sum of the binary variables  pain location, pain during exercise and relief on rest and therefore contains no additional information. 
+After that irrelevant columns such as IDs, dates, constants, undescribed columns as well as irrelevant columns according to the UCI were removed. All of these columns are either not causally related to the presence of heart disease or cannot be examined for new patients because it is unknown what they measure. The feature \textit{pncaden} was also dropped because it is the sum of the binary variables pain location, pain during exercise and relief on rest and therefore contains no additional information. 
 
 After the removal 55 attributes remained and were used to train the first model. XGBoost was chosen for that because it natively can handle \texttt{NaN} values. The accuracy of a 10-fold cross validation without any tuning was 0.98. This result was unexpectedly good, which is why   the importance of the different features was analyzed. It was found that the features belonging to the category of the coronary angiograms were serving as false predictors and therefore removed, leaving us with 45 remaining features. To validate that the removal hat the desired effect the cross validation was run again this time with an accuracy of 0.76 and a more reasonable distribution in the weights of the features.   
 
@@ -47,7 +47,7 @@ To impute the missing data a simple imputer was used. Missing values are replace
 
 It becomes apparent that there are certain steps where the number of features increases significantly. To decide when a feature is included based on the number of missing values, the steps 0, 4, 8, 20, 35, 60, 75 and 100\% were set as hyperparameter. They are shown as vertical lines in the graph. 
 
-To account for the different ranges of the features the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, StandardScaler and Normalizer are used. As the parameters of most scalers turn on or off core functionalities of the scaler, only  the norm of the Normalizer was changed by hyperparameters with the norms L1, L2 and max.
+To account for the different ranges of the features the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, StandardScaler and Normalizer are used. As the parameters of most scalers turn on or off core functionalities of the scaler, only the norm of the Normalizer was changed by hyperparameters with the norms L1, L2 and max.
 
 To account for the slight imbalance of healthy and unhealthy patients oversampling and undersampling in the training data in comparison to no sampling was used. After this step the preprocessing is done. 
 
