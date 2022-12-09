@@ -45,9 +45,9 @@ To impute the missing data a simple imputer was used. Missing values are replace
 	\label{fig:percentageToBeDropped}
 \end{figure}
 
-It becomes apparent that there are certain steps where the number of features goes up a lot. To decide when a feature is included based on the number of missing values, the steps 0, 4, 8, 20, 35, 60, 75 and 100\% were set as hyperparameter. They are shown as vertical lines in the graph. 
+It becomes apparent that there are certain steps where the number of features increases significantly. To decide when a feature is included based on the number of missing values, the steps 0, 4, 8, 20, 35, 60, 75 and 100\% were set as hyperparameter. They are shown as vertical lines in the graph. 
 
-To account for the different ranges of the features the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, Standardscaler and Normalizer are used. As the parameters of most scalers turn on or off core functionalities of the scaler, only tune the norm of the Normalizer was changed by hyperparameters with the norms l1, l2 and max.
+To account for the different ranges of the features the MaxAbsScaler, MinMaxScaler, PowerTransformer, RobustScaler, StandardScaler and Normalizer are used. As the parameters of most scalers turn on or off core functionalities of the scaler, only tune the norm of the Normalizer was changed by hyperparameters with the norms l1, l2 and max.
 
 To account for the slight imbalance of healthy and unhealthy patients oversampling and undersampling in the training data in comparison to no sampling was used. After this step the preprocessing is done. 
 
