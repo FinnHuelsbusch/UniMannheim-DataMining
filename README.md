@@ -1,5 +1,6 @@
 # Classifying heart disease data
-This repository analyses the UCI heart disease dataset. The dataset was downloaded from: https://archive.ics.uci.edu/ml/datasets/Heart+Disease and placed in the folder `Data`.
+
+This repository analyses the UCI heart disease dataset. The dataset was downloaded from: <https://archive.ics.uci.edu/ml/datasets/Heart+Disease> and placed in the folder `Data`.
 A description of the different features can be found in `DatamininFeatures`.
 
 The training of the models takes place in the notebook `notebook.ipynb`. The results of this notebook are stored in the `outputs` folder.
